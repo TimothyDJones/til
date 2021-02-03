@@ -7,6 +7,7 @@ Tips for using [Visual Studio Code](https://code.visualstudio.com/) editor/IDE.
 
 | Shortcut Key | Action |
 | :----------- | :----- |
+| <kbd>Alt</kbd> + ↑ / ↓ | Move current line up/down. |
 | <kbd>Ctrl</kbd> + / | Toggle comment (line or selection). |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + \ | Jump to matching bracket. |
 | <kbd>Ctrl</kbd> + ] / \[ | Indent/outdent line. |
