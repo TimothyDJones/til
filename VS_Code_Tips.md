@@ -20,3 +20,4 @@ Tips for using [Visual Studio Code](https://code.visualstudio.com/) editor/IDE.
 ## Favorite Extensions
 - [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 - [GitHub Plus Theme](https://github.com/thenikso/github-plus-theme)
+- [VSCodeVim](https://github.com/VSCodeVim/Vim) - Vim emulator for VSCode
