@@ -20,3 +20,18 @@ To find the location of the system/global and user-specific version of the confi
 Likewise, to see the full path and file name of your _user_ configuration file, run `:echo $MYVIMRC`. If nothing is returned, that means you do not have one.  
 
 [Reference](https://stackoverflow.com/questions/8977649/how-to-locate-the-vimrc-file-used-by-vim-editor)
+
+## Managing windows (buffers) and splits
+
+| Command | Shortcut Key | Action               |
+| :------ | :----------- | :------------------- |
+| :sp[lit] | <kbd>Ctrl> + W <kbd>s<kbd> | Horizontal split |
+| :vsp[lit] | <kbd>Ctrl> + W <kbd>s<kbd> | Vertical split |
+| | <kbd>Ctrl> + W <kbd>h<kbd> / <kbd>j<kbd> / <kbd>k<kbd> / <kbd>l<kbd> | Move to _left_ / _upper_ / _lower_ / _right_ buffer (same as regular navigation key bindings) |
+| | <kbd>Ctrl> + W <kbd><<kbd> / <kbd>><kbd> | Decrease / increase *width* of _vertical_ split |
+| | <kbd>Ctrl> + W <kbd>-<kbd> / <kbd>-<kbd> | Decrease / increase *height* of _horizontonal split
+| :enew | | Open new/empty buffer |
+| :bn[ext] | | Next buffer |
+| :bp[revious] | | Previous buffer |
+| :bd[elete] | | Close current buffer |
+| :ls | | List open buffers |
