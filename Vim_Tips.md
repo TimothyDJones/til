@@ -25,13 +25,15 @@ Likewise, to see the full path and file name of your _user_ configuration file, 
 
 | Command | Shortcut Key | Action               |
 | :------ | :----------- | :------------------- |
-| :sp[lit] | <kbd>Ctrl> + W <kbd>s<kbd> | Horizontal split |
-| :vsp[lit] | <kbd>Ctrl> + W <kbd>s<kbd> | Vertical split |
-| | <kbd>Ctrl> + W <kbd>h<kbd> / <kbd>j<kbd> / <kbd>k<kbd> / <kbd>l<kbd> | Move to _left_ / _upper_ / _lower_ / _right_ buffer (same as regular navigation key bindings) |
-| | <kbd>Ctrl> + W <kbd><<kbd> / <kbd>><kbd> | Decrease / increase *width* of _vertical_ split |
-| | <kbd>Ctrl> + W <kbd>-<kbd> / <kbd>-<kbd> | Decrease / increase *height* of _horizontonal split
-| :enew | | Open new/empty buffer |
-| :bn[ext] | | Next buffer |
-| :bp[revious] | | Previous buffer |
-| :bd[elete] | | Close current buffer |
-| :ls | | List open buffers |
+| `:sp[lit]` | <kbd>Ctrl</kbd> + W <kbd>s</kbd> | Horizontal split |
+| `:vsp[lit]` | <kbd>Ctrl</kbd> + W <kbd>s</kbd> | Vertical split |
+| | <kbd>Ctrl</kbd> + W <kbd>h</kbd> / <kbd>j</kbd> / <kbd>k</kbd> / <kbd>l</kbd> | Move to _left_ / _upper_ / _lower_ / _right_ split <br />(same as regular navigation key bindings) |
+| | <kbd>Ctrl</kbd> + W <kbd><</kbd> / <kbd>></kbd> | Decrease / increase *width* of _vertical_ split |
+| | <kbd>Ctrl</kbd> + W <kbd>-</kbd> / <kbd>-</kbd> | Decrease / increase *height* of _horizontonal split
+| `:enew` | | Open new/empty buffer |
+| `:bn[ext]` | | Next buffer |
+| `:bp[revious]` | | Previous buffer |
+| `:bd[elete]` | | Close current buffer |
+| `:ls` | | List open buffers |
+
+[Reference](https://www.tecmint.com/split-vim-screen/)  
