@@ -2,6 +2,8 @@
 
 Tips for using [Visual Studio Code](https://code.visualstudio.com/) editor/IDE.
 
+Microsoft's collection of [tips and tricks for VS Code](https://github.com/microsoft/vscode-tips-and-tricks).
+
 ## Keyboard Shortcuts
 *[Cheat Sheet](https://code.visualstudio.com/shortcuts/keyboard-shortcuts-windows.pdf)* [pdf]  
 
