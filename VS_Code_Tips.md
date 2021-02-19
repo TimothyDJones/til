@@ -37,4 +37,5 @@ Probably the best feature of VS Code is its fantastic configurability. To access
 ## Favorite Extensions
 - [Bracket Pair Colorizer](https://marketplace.visualstudio.com/items?itemName=CoenraadS.bracket-pair-colorizer)
 - [GitHub Plus Theme](https://github.com/thenikso/github-plus-theme)
+- [REST Client](https://github.com/Huachao/vscode-restclient) - Make HTTP and [cURL](https://curl.haxx.se/) requests directly from VS Code and view responses directly.
 - [VSCodeVim](https://github.com/VSCodeVim/Vim) - Vim emulator for VSCode
