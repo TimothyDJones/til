@@ -70,3 +70,62 @@ This will import **only** the symbols `foo` and `Bar` (presumably a class, since
 
 [Reference1](https://stackoverflow.com/a/35710527)  
 [Reference2](https://docs.python.org/tutorial/modules.html#importing-from-a-package)
+
+## Virtual Environments and Dependency Management
+Dependency management in Python is a key aspect of successful development just as with any modern programming language. Python's solution to depenency management is the [virtual environment](https://docs.python.org/3/tutorial/venv.html), often abbreviated `venv`. Virtual environments provide an isolated run-time environment (self-contained directory tree) with the Python environment plus additional packages with specific versions applicable to the given application.
+
+The Python community differs on whether virtual environments should be contained within the project directory for an application or separate from (outside of) it. My _preference_ is to keep the `venv` **in** the project directory in a **hidden** directory named `.venv`. This helps to avoid confusion about which virtual environment directories correspond to which projects, especially if you rename your project directories.
+
+The basic workflow for virtual environments is:
+1. Create
+2. Activate
+3. Use
+4. Deactivate
+Let's look at each of these phases in turn.
+
+### Create
+To create a virtual environment, in your shell (command prompt), navigate to the desired directory for it and run:
+```bash
+python3 -m venv .venv
+```
+Substitute whatever name you prefer for the virtual environment for `.venv` above. (Again, I use `.venv` so that it will be a hidden directory under Linux and the name shows that it is for the virtual environment, but you can use whatever name you like, such as the project name itself.)
+
+### Activate
+Once the virtual environment has been created, it has not yet been activated, meaning that the _system_ Python (or perhaps even another virtual environment!) is still active. To confirm this, on Linux, run `which python3` and it is likely to return `/usr/bin/python3`. We must _activate_ our new virtual environment. The process is slightly different between Linux/MacOS and Windows. On Windows, run:
+```bash
+.venv\Scripts\activate.bat
+```
+On Linux/MacOS, run:
+```bash
+source .venv/bin/activate
+```
+Again, as above, substitute the name of your virtual environment of `.venv` in these commands.
+
+Activating the environment will update your command prompt by prepending the name of the virtual environment in parentheses to your original prompt. Likewise, it set several other environment variables to configure the environment to use the virtual environment. 
+
+As above, run `which python3` to determine the path of the Python executable for the virtual environment. You should see it in a directory under the virtual environment now! You can further confirm this by opening the Python shell (REPL) and checking the `sys.path` parameter:
+```bash
+(.venv) $ python3
+Python 3.8.5 (default, Jul 28 2020, 12:59:40) 
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import sys
+>>> sys.path
+['', '/usr/lib/python38.zip', '/usr/lib/python3.8',  '/home/tim/.venv/lib/python3.8/site-packages']
+```
+
+## Deactivate
+Before we look at using our virtual environment, let's discuss how to _deactivate_ it. When we finished with a specific virtual environment, such as when we want to switch to another project, we want to make sure that we deactivate the virtual environment. This is necessary to avoid accidentally installing a package (or the wrong version of a package!) in that environment.
+
+To deactivate our `venv`, we simply "undo" the _activate_ process from above. In Windows, run:
+```bash
+.venv\Scripts\deactivate.bat
+```
+In Linux/MacOS, _from any directory_ run:
+```bash
+deactivate
+```
+As with activating the virtual environment, the command prompt will change to _remove_ the reference to the virtual environment name and the other settings will likewise be removed, setting things back to the system Python environment.
+
+### Tools for Managing Virtual Environments and Dependencies
+While `venv` Python standard library module is the _de facto_ tool for creating and managing virtual environments, the Python community has many options that you may wish to evaluate 
