@@ -80,7 +80,7 @@ The basic workflow for virtual environments is:
 1. Create
 2. Activate
 3. Use
-4. Deactivate
+4. Deactivate  
 Let's look at each of these phases in turn.
 
 ### Create
@@ -114,7 +114,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ['', '/usr/lib/python38.zip', '/usr/lib/python3.8',  '/home/tim/.venv/lib/python3.8/site-packages']
 ```
 
-## Deactivate
+### Deactivate
 Before we look at using our virtual environment, let's discuss how to _deactivate_ it. When we finished with a specific virtual environment, such as when we want to switch to another project, we want to make sure that we deactivate the virtual environment. This is necessary to avoid accidentally installing a package (or the wrong version of a package!) in that environment.
 
 To deactivate our `venv`, we simply "undo" the _activate_ process from above. In Windows, run:
@@ -127,5 +127,31 @@ deactivate
 ```
 As with activating the virtual environment, the command prompt will change to _remove_ the reference to the virtual environment name and the other settings will likewise be removed, setting things back to the system Python environment.
 
+### Using Your Virtual Environment
+Once you've created and activated the virtual environment, you are ready to use it for your development work.
+
+Typically, the first thing that you want to do is [ensure that `pip` is up to date](https://pythonspeed.com/articles/upgrade-pip/):
+```bash
+python3 -m pip install --upgrade pip
+```
+Now that you have the latest version of `pip`, you can install the other packages that you need, including any version-specific instances. For example, let's say that you need to install version _2.24_ of the [`requests`](https://requests.readthedocs.io/) HTTP library, due to a known issue with the later versions. In this case, you would run:
+```bash
+python3 -m pip install -v 'requests==2.24.0'
+```
+Since this is in the virtual environment, it does not interfere with any other projects that depend on `requests` which require the newer versions of the package.
+
+Finally, you can use `pip` to create a `requirements.txt` file for your project with the version-specific instances of the packages, so that you can reproduce the same configuration in your production environment:
+```bash
+python3 -m pip freeze > requirements.txt
+more requirements.txt
+certifi==2020.12.5
+chardet==3.0.4
+idna==2.10
+pkg-resources==0.0.0
+requests==2.24.0
+urllib3==1.25.11
+```
+
 ### Tools for Managing Virtual Environments and Dependencies
-While `venv` Python standard library module is the _de facto_ tool for creating and managing virtual environments, the Python community has many options that you may wish to evaluate 
+While [`venv`](https://docs.python.org/3/library/venv.html) Python standard library module is the _de facto_ tool for creating and managing virtual environments, the Python community has many options that you may wish to evaluate for your particular situation.
+- [pyenv]
