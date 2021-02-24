@@ -8,6 +8,28 @@ Tips and important things that I've learned for the [Python](https://www.python.
 - [Learn X in Y Minutes](https://learnxinyminutes.com/docs/python/)
 - [wikiPython](https://www.wikipython.com/) - Focused on Tkinter and GUI programming and RaspberryPi.
 
+## Online Python Shells/IDEs
+
+### Shells
+- [Python.org](https://www.python.org/shell/)
+- [Python Anywhere IPython](https://www.pythonanywhere.com/try-ipython/)
+
+### IDEs
+- [Python Tutor](http://www.pythontutor.com/visualize.html#mode=edit) - Graphical visualization of code execution
+- [Python Fiddle](http://pythonfiddle.com/)
+- [CodeSkulptor3](https://py3.codeskulptor.org/) - Supports GUI applications
+- [IDEOne.com](https://ideone.com/l/python-3)
+- [JDoodle](https://www.jdoodle.com/python3-programming-online/)
+- [Paiza.io](https://paiza.io/en/projects/new?language=python3)
+- [Programiz](https://www.programiz.com/python-programming/online-compiler/)
+- [Online Python](https://www.online-python.com/)
+- [Repl.it](https://www.programiz.com/python-programming/online-compiler/)
+- [Rextester](https://rextester.com/l/python3_online_compiler)
+- [Trinket.io](https://trinket.io/python)
+- [Try It Online (TIO)](https://tio.run/#python3)
+- [TutorialsPoint (Python 2.7)](https://www.tutorialspoint.com/execute_python_online.php)
+- [W3Schools](https://www.w3schools.com/python/trypython.asp?filename=demo_compiler)
+
 ## Forums/Social Media
 - [HackerNews](https://news.ycombinator.com/)
 - [Dev Community Python](https://dev.to/t/python)
