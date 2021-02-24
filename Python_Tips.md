@@ -72,7 +72,7 @@ This will import **only** the symbols `foo` and `Bar` (presumably a class, since
 [Reference2](https://docs.python.org/tutorial/modules.html#importing-from-a-package)
 
 ## Virtual Environments and Dependency Management
-Dependency management in Python is a key aspect of successful development just as with any modern programming language. Python's solution to depenency management is the [virtual environment](https://docs.python.org/3/tutorial/venv.html), often abbreviated `venv`. Virtual environments provide an isolated run-time environment (self-contained directory tree) with the Python environment plus additional packages with specific versions applicable to the given application.
+Dependency management in Python is a key aspect of successful development just as with any modern programming language. Python has a [somewhat notorious reputation](https://xkcd.com/1987/) when it comes to dependency management, but things are markedly better with Python 3. Python's solution to depenency management is the [virtual environment](https://docs.python.org/3/tutorial/venv.html), often abbreviated `venv`. Virtual environments provide an isolated run-time environment (self-contained directory tree) with the Python environment plus additional packages with specific versions applicable to the given application.
 
 The Python community differs on whether virtual environments should be contained within the project directory for an application or separate from (outside of) it. My _preference_ is to keep the `venv` **in** the project directory in a **hidden** directory named `.venv`. This helps to avoid confusion about which virtual environment directories correspond to which projects, especially if you rename your project directories.
 
@@ -80,7 +80,8 @@ The basic workflow for virtual environments is:
 1. Create
 2. Activate
 3. Use
-4. Deactivate  
+4. Deactivate
+
 Let's look at each of these phases in turn.
 
 ### Create
@@ -142,8 +143,8 @@ Since this is in the virtual environment, it does not interfere with any other p
 
 Finally, you can use `pip` to create a `requirements.txt` file for your project with the version-specific instances of the packages, so that you can reproduce the same configuration in your production environment:
 ```bash
-python3 -m pip freeze > requirements.txt
-more requirements.txt
+$ python3 -m pip freeze > requirements.txt
+$ more requirements.txt
 certifi==2020.12.5
 chardet==3.0.4
 idna==2.10
@@ -153,5 +154,10 @@ urllib3==1.25.11
 ```
 
 ### Tools for Managing Virtual Environments and Dependencies
-While [`venv`](https://docs.python.org/3/library/venv.html) Python standard library module is the _de facto_ tool for creating and managing virtual environments, the Python community has many options that you may wish to evaluate for your particular situation.
-- [pyenv]
+While [`venv`](https://docs.python.org/3/library/venv.html) Python standard library module is the _de facto_ tool for creating and managing virtual environments, the Python community has many options that you may wish to evaluate for your particular situation. For a more comprehensive overview of these tools, see [this article](https://dev.to/bowmanjd/python-tools-for-managing-virtual-environments-3bko).
+- [virtualenv](https://virtualenv.pypa.io/en/latest/) - This is the "granddaddy" of virtual environment tools and is actually the forerunner of the `venv` standard library module. Nevertheless, it has some handy extensions, such as "seeders" that allow you to configure all of your virtual environments with a set of standard packages. If you decide to use `virtualenv`, be sure to check out [`virtualenvwrapper`](https://virtualenvwrapper.readthedocs.io/), as well, since it provides a nice convenience wrapper around it to simplify use.
+- [Poetry](https://python-poetry.org/) - Poetry takes a **declarative** approach to depenency management. You specify your dependencies in a configuration file ([`pyproject.toml`](https://snarky.ca/what-the-heck-is-pyproject-toml/)) or via the Poetry command-line tool (`poetry add package`). Poetry takes care of setting up your virtual environment, installing the packages, activating/deactivating the virtual environments and so forth. You just interact with Poetry itself.
+- [tox](https://tox.readthedocs.io/) - At first glance, `tox` seems a bit more than just a virtual environment tool and that is, in fact, true. It is intended to be used as part of a CI/CD pipeline, specifically for testing against multiple Python versions using [`pytest`](https://docs.pytest.org/). I'm including here, since it's a widely used tool (you've probably seen the ubiquitous `tox.ini` file in various Github or Gitlab repositories). Moreover, tox provides a good framework for _gently_ transitioning from virtual environments to a more rigorous CI/CD environment.
+- [Pyflow](https://github.com/David-OConnor/pyflow) - Pyflow is a new tool (built in Rust no less!) that also uses [`pyproject.toml`](https://snarky.ca/what-the-heck-is-pyproject-toml/) configuration. However, its "superpower" is that you can point it to a Python script itself that contains a `__requires__` directive with a list of package names and it will install those packages as dependencies and build out the appropriate `pyproject.toml` configuration.
+- [pipenv](https://pipenv.pypa.io/en/latest/) - Pipenv was developed by [Kenneth Reitz](https://kenreitz.org/) of `requests` fame, so it's simple, solid and well-designed. It's designed to resolve some of the drawbacks of deterministic versioning with `requirements.txt` by using hash-based version management of its `Pipfile` and `Pipfile.lock` configuration files, similarly to other dependency management tools like `npm` for Node.JS and `composer` for PHP.
+- [pyenv](https://github.com/pyenv/pyenv) - Pyenv is not actually a _virtual environment_ management tool _per se_, but instead is a Python _version_ management tool. It allows you to install multiple versions of the Python compiler/run-time and switch between them quickly and easily. Each time you add a new Python version, pyenv downloads the source code for that version and compiles it from scratch, so you also have flexibility with optimizations and so forth with the Python installation, as well.
