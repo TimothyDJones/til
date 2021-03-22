@@ -35,7 +35,15 @@ Likewise, to see the full path and file name of your _user_ configuration file, 
 | `:b`_#_ | | Open buffer number _#_ (see `ls` below) |
 | `:bp[revious]` | | Previous buffer |
 | `:bd[elete]` | | Close current buffer |
-| `:ls` | | List open buffers |
+| `:ls` | | List open buffers
+```bash
+:ls
+  1 #    "space_rocks/__main__.py"      line 5
+  2 %a   "space_rocks/game.py"          line 74
+  3      "space_rocks/utils.py"         line 0
+  4      "space_rocks/models.py"        line 0
+```
+ |
 
 [Reference](https://www.tecmint.com/split-vim-screen/)  
 
