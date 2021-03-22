@@ -37,3 +37,8 @@ Likewise, to see the full path and file name of your _user_ configuration file, 
 | `:ls` | | List open buffers |
 
 [Reference](https://www.tecmint.com/split-vim-screen/)  
+
+## Indent/Outdent Multiple Lines
+The quickest way to indent/outdent multiple lines is to enter **VISUAL** mode (press <kbd>v</kbd>), then select the desired rows using standard navigation (<kbd>j</kbd> and <kbd>k</kbd>). Then use <kbd>></kbd> to _indent_ and <kbd><</kbd> to _outdent_ the selected text.
+
+[Reference](https://stackoverflow.com/a/7452318)  
