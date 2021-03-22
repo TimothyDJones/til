@@ -32,6 +32,7 @@ Likewise, to see the full path and file name of your _user_ configuration file, 
 | | <kbd>Ctrl</kbd> + W <kbd>-</kbd> / <kbd>+</kbd> | Decrease / increase **height** of **horizontonal** split
 | `:enew` | | Open new/empty buffer |
 | `:bn[ext]` | | Next buffer |
+| `:b`_#_ | | Open buffer number _#_ (see `ls` below) |
 | `:bp[revious]` | | Previous buffer |
 | `:bd[elete]` | | Close current buffer |
 | `:ls` | | List open buffers |
