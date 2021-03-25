@@ -2,6 +2,15 @@
 
 Tips for using [Vim](https://code.visualstudio.com/) editor.
 
+## Basic Editing Movements
+| Keystrokes | Command | Action |
+| :--------- | :------ | :----- |
+| <kbd>x</kbd> | **x** | **d**elete character under cursor |
+| <kbd>i</kbd>/<kbd>a</kbd> | **i** / **a** | **i**nsert _at_ or **a**ppend _after_ cursor |
+| <kbd>yy</kbd> | **yy** | duplicate current line (**yank yank**) |
+| <kbd>y</kbd> | **y** | copy (**yank**) selection to clipboard |
+| <kbd>p</kbd> | **p** | **p**aste clipboard _after_ cursor |
+
 ## Find location of Vim configuration files
 Vim stores configuration information in files variously named `.vimrc`, `vimrc`, `.gvimrc`, and `gvimrc`, depending on the OS/platform and version. The `g` applies to the GUI version of the Vim.  
 To find the location of the system/global and user-specific version of the configuration files used by Vim, run the `:version` commmand. It will return something similar to (from Ubuntu):
