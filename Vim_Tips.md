@@ -60,3 +60,15 @@ Likewise, to see the full path and file name of your _user_ configuration file, 
 The quickest way to indent/outdent multiple lines is to enter **VISUAL** mode (press <kbd>v</kbd>), then select the desired rows using standard navigation (<kbd>j</kbd> and <kbd>k</kbd>). Then use <kbd>></kbd> to _indent_ and <kbd><</kbd> to _outdent_ the selected text.
 
 [Reference](https://stackoverflow.com/a/7452318)  
+
+## Comment/Uncomment Multiple Lines
+Use [mark](http://vimdoc.sourceforge.net/htmldoc/motion.html#mark) to specify the range of lines to comment. In this example, we use the letter `t`.
+
+Mark the start of the range of the lines to `mt`. Use arrow keys or `j` and `k` (or any navigation keys) to select the desired range. Then enter the command `:'t,.s/^/#/` to comment the select lines. This command means:
+- `:` prefix for complex commands
+- `'t,.` range for the command; in this case, from the marker `'t` to the current line `.`
+- `s/^/#/` substitution command; in this case, replaces all beginning of line `^` with literal character `#`
+
+To remove the `#` from the beginning of the lines, repeat the process with substitution command `s/^#//`.
+
+[Reference](https://unix.stackexchange.com/a/120619)
