@@ -72,3 +72,10 @@ Mark the start of the range of the lines to `mt`. Use arrow keys or `j` and `k` 
 To remove the `#` from the beginning of the lines, repeat the process with substitution command `s/^#//`.
 
 [Reference](https://unix.stackexchange.com/a/120619)
+
+## Check Color Support in Your Vim Instance
+To determine the [color name values](https://vim.fandom.com/wiki/Xterm256_color_names_for_console_Vim) supported in your Vim instance, execute this command in Vim:
+```
+:run colortest.vim
+```
+This will open a new buffer with the color names and examples of these colors.
