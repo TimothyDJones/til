@@ -29,6 +29,7 @@ Probably the best feature of VS Code is its fantastic configurability. To access
 | `"editor.renderWhitespace": "all"` | Displays all whitespace characters (tabs, spaces, new lines, etc.) on screen. |
 | `"editor.cursorStyle": "block"` | Displays cursor as a block. |
 | `"editor.cursorBlinking": "smooth"` | Flashes cursor smoothly. |
+| `"editor.rulers": [80, 100, 120]` | Displays vertical line at columns 80, 100, and 120 to show visually length of code line. |
 | `"workbench.editor.highlightModifiedTabs": true` | Adds highlight to top of tab of unsaved editors for easy identification. |
 | `"editor.minimap.enabled": false` | Disables the editor minimap. |
 | `"editor.matchBrackets": "near"` | Matches bracket pairs only in close proximity. |
