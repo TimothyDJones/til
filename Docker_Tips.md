@@ -81,6 +81,9 @@ docker run hello-world
 ```
 You should see Docker pull down (or perhaps update, if you had Docker previously installed) the "Hello, World" Docker image and launch it. You'll see some output including the message `Hello from Docker!`, which confirms successfully installation and configuration.
 
+[Reference1](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)  
+[Reference2](https://docs.docker.com/engine/install/ubuntu/)
+
 ***
 
 ## Install Docker Compose Utility
@@ -91,10 +94,6 @@ sudo chmod +x /usr/local/bin/docker-compose
 ```
 
 [Reference](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
-
-[Reference1](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
-
-[Reference3](https://docs.docker.com/engine/install/ubuntu/)
 
 ***
 
