@@ -63,11 +63,11 @@ TriggeredBy: ● docker.socket
              └─746864 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
 ```
 
-### Add Your User Account to `docker` Group to Run Docker Without Entering Password
+### Add Your User Account to _docker_ Group to Run Docker Without Entering Password
 ```bash
 sudo usermod -aG docker ${USER}
 ```
-You will have to logout (not just close your shell/terminal window) to get permissions for the `docker` group. Of course, you can proceed without these permissions, but you'll need to enter your account password whenever you rung the `docker` (or related) command.
+You will have to logout (not just _close_ your shell/terminal window) to get permissions for the `docker` group. Of course, you can proceed without these permissions, but you'll need to enter your account password whenever you rung the `docker` (or related) command.
 
 As an alternative, you can open a sub-shell with the new `docker` group member with this command:
 ```bash
@@ -87,7 +87,7 @@ You should see Docker pull down (or perhaps update, if you had Docker previously
 ***
 
 ## Install Docker Compose Utility
-The [Docker Compose](https://docs.docker.com/compose/) tool allows you to build Docker applications made up of multiple containers and services from a single [YAML](https://yaml.org/) configuration file, [`docker-compose.yml'](https://docs.docker.com/compose/compose-file/). Many packaged applications that use Docker require/expect Docker Compose to be installed. To install it, run:
+The [Docker Compose](https://docs.docker.com/compose/) tool allows you to build Docker applications made up of multiple containers and services from a single [YAML](https://yaml.org/) configuration file, [`docker-compose.yml`](https://docs.docker.com/compose/compose-file/). Many packaged applications that use Docker require/expect Docker Compose to be installed. To install it, run:
 ```bash
 sudo curl -L "https://github.com/docker/compose/releases/download/1.29.1/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 sudo chmod +x /usr/local/bin/docker-compose
