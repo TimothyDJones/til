@@ -2,6 +2,13 @@
 
 Tips for using [Vim](https://code.visualstudio.com/) editor.
 
+## Basic Navigation/Movements
+| Keystrokes | Command | Action |
+| :--------- | :------ | :----- |
+| <kbd>G</kbd> | **G** | Go to end of file/buffer |
+| <kbd>gg</kbd> | **gg** | Go to start of file/buffer |
+| 
+
 ## Basic Editing Movements
 | Keystrokes | Command | Action |
 | :--------- | :------ | :----- |
