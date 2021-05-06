@@ -14,7 +14,7 @@ sudo apt-get autoremove -y --purge docker-engine docker docker.io
 [Reference1](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04)
 [Reference2](https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04)
 
----
+***
 
 ## Completely Uninstall and Remove Docker from Ubuntu
 
