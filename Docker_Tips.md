@@ -4,7 +4,7 @@ Tips for using [Docker](https://docker.com/) container/virtualization platform.
 
 ## Install Docker on Ubuntu from Official Repository
 
-### Remove Docker from _Ubuntu_ Repositories
+### Remove Any Version of Docker Installed from _Ubuntu_ Repositories
 ```bash
 sudo apt-get purge -y docker-engine docker docker.io containerd runc
 sudo apt-get autoremove -y --purge docker-engine docker docker.io containerd runc
@@ -42,7 +42,7 @@ docker-ce:
 
 ### Install Docker from Repository
 ```bash
-sudo apt-get install -y docker
+sudo apt-get install -y docker-ce
 ```
 
 ### Ensure that Docker Service Started Successfully

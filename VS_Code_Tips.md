@@ -9,7 +9,9 @@ Microsoft's collection of [tips and tricks for VS Code](https://github.com/micro
 
 | Shortcut Key | Action |
 | :----------- | :----- |
-| <kbd>Alt</kbd> + ↑ / ↓ | Move current line up/down. |
+| <kbd>Ctrl</kbd> + <kbd>Space</kbd> | Display Intellisense hints. |
+| <kbd>Alt</kbd> + ↑ / ↓ | **Move** current line up/down. |
+| <kbd>Shift</kbd> + <kbd>Alt</kbd> + ↑ / ↓ | **Copy** current line up/down. |
 | <kbd>Ctrl</kbd> + / | Toggle comment (line or selection). |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + \ | Jump to matching bracket. |
 | <kbd>Ctrl</kbd> + ] / \[ | Indent/outdent line. |
@@ -18,6 +20,11 @@ Microsoft's collection of [tips and tricks for VS Code](https://github.com/micro
 | <kbd>Ctrl</kbd> + P | Quick search for recently opened files by name. |
 | <kbd>Ctrl</kbd> + X | Cut current line (empty selection). |
 | <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + K | Delete line. |
+| <kbd>Ctrl</kbd> + K + Z | Distraction-free ("Zen") mode toggle |
+| <kbd>Ctrl</kbd> + \ | Side-by-side editing |
+| <kbd>Ctrl</kbd> + K + V | Side-by-side Markdown editing with preview |
+| <kbd>Ctrl</kbd> + K <kbd>Ctrl</kbd> + F | Format **selected** text/code |
+| <kbd>Shift</kbd> + <kbd>Alt</kbd> + F | Format **entire** document/file |
 
 ## Recommended Settings
 Probably the best feature of VS Code is its fantastic configurability. To access the **User** `settings.json` file, which contains the VS Code configuration parameters, File → Preferences → Settings or <kbd>Ctrl</kbd> + <kbd>,</kbd>. As the file name indicates, settings are stored as regular JSON key/value pairs. Here are some of the settings that I find most useful.
