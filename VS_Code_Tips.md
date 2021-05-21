@@ -25,6 +25,8 @@ Microsoft's collection of [tips and tricks for VS Code](https://github.com/micro
 | <kbd>Ctrl</kbd> + K + V | Side-by-side Markdown editing with preview |
 | <kbd>Ctrl</kbd> + K <kbd>Ctrl</kbd> + F | Format **selected** text/code |
 | <kbd>Shift</kbd> + <kbd>Alt</kbd> + F | Format **entire** document/file |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + F / H | Find or replace in files (in side bar). |
+| <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + G | Source control (in side bar). |
 
 ## Recommended Settings
 Probably the best feature of VS Code is its fantastic configurability. To access the **User** `settings.json` file, which contains the VS Code configuration parameters, File → Preferences → Settings or <kbd>Ctrl</kbd> + <kbd>,</kbd>. As the file name indicates, settings are stored as regular JSON key/value pairs. Here are some of the settings that I find most useful.
