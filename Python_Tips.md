@@ -170,8 +170,9 @@ First, you need to determine the population of characters to use for your random
 - [`ascii_uppercase`](https://docs.python.org/3/library/string.html#string.ascii_uppercase) - `'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
 - [`ascii_letters`](https://docs.python.org/3/library/string.html#string.ascii_letters) - The combination of `ascii_lowercase` and `ascii_letters`.
 - [`digits`](https://docs.python.org/3/library/string.html#string.digits) - `'0123456789'`
-- [`punctuation`](https://docs.python.org/3/library/string.html#string.punctuation) - `!"#$%&'()*+,-./:;<=>?@[\\]^_\`{|}~`
-Several of the `punctuation` don't make great choices for such things as passwords, so perhaps you want to define your own subset like:
+- [`punctuation`](https://docs.python.org/3/library/string.html#string.punctuation) - `!"#$%&'()*+,-./:;<=>?@[\]^_``{|}~`
+
+Several of the `punctuation` characters don't make great choices for such things as passwords, so perhaps you want to define your own subset like:
 ```python
 SPECIAL_CHARS = '!#$%^&+-_=/@~'
 ```
