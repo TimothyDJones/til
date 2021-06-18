@@ -207,27 +207,27 @@ import uuid
 
 # function to generate "random" string _n_ characters long (up to 32-characters)
 def uuid_rand_str(n):
-	n = int(n)
-	if n > 32:
-		raise ValueError("'rand_str' does not support strings greater than 32 characters in length.")
-	slice_start = random.SystemRandom().randint(0, (31-(n-1)))
-	return (uuid.uuid4().hex[slice_start:(slice_start+(n-1))])
-	
+    n = int(n)
+    if n > 32:
+        raise ValueError("'rand_str' does not support strings greater than 32 characters in length.")
+    slice_start = random.SystemRandom().randint(0, (31-(n-1)))
+    return (uuid.uuid4().hex[slice_start:(slice_start+(n-1))])
+    
 # Generate a "random" string of 22 characters
 rand_str_22 = uuid_rand_str(22)
 ```
 Of course, you aren't _really_ limited to 32 characters with this method. You can simply use `uuid4()` multiple times to get longer strings. For example:
 ```python
 def uuid_rand_str(n):
-	n = int(n)
-	# Number of times to run uuid4() method
-	base = (n % 32) + 1
-	slice_start = random.SystemRandom().randint(0, (((base*32)-1)-(n-1)))
-	uuid_str = ""
-	for _ in range(base):
-		uuid_str = uuid_str.join(uuid.uuid4().hex)
-	return (uuid_str[slice_start:(slice_start+(n-1))])
-	
+    n = int(n)
+    # Number of times to run uuid4() method
+    base = (n % 32) + 1
+    slice_start = random.SystemRandom().randint(0, (((base*32)-1)-(n-1)))
+    uuid_str = ""
+    for _ in range(base):
+        uuid_str = uuid_str.join(uuid.uuid4().hex)
+    return (uuid_str[slice_start:(slice_start+(n-1))])
+    
 # Generate a "random" string of 100 characters
 rand_str_22 = uuid_rand_str(100)
 ```
