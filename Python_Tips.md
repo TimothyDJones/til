@@ -161,3 +161,72 @@ While [`venv`](https://docs.python.org/3/library/venv.html) Python standard libr
 - [Pyflow](https://github.com/David-OConnor/pyflow) - Pyflow is a new tool (built in Rust no less!) that also uses [`pyproject.toml`](https://snarky.ca/what-the-heck-is-pyproject-toml/) configuration. However, its "superpower" is that you can point it to a Python script itself that contains a `__requires__` directive with a list of package names and it will install those packages as dependencies and build out the appropriate `pyproject.toml` configuration.
 - [pipenv](https://pipenv.pypa.io/en/latest/) - Pipenv was developed by [Kenneth Reitz](https://kenreitz.org/) of `requests` fame, so it's simple, solid and well-designed. It's designed to resolve some of the drawbacks of deterministic versioning with `requirements.txt` by using hash-based version management of its `Pipfile` and `Pipfile.lock` configuration files, similarly to other dependency management tools like `npm` for Node.JS and `composer` for PHP. As explained [here](https://www.mattlayman.com/blog/2017/using-pipfile-for-fun-and-profit/), `Pipfile` manages the _logical_ dependencies, meaning the explicit dependencies that your code has, such as `requests` library in the example above. `Pipfile.lock` acts as a dependency _manifest_ for the **transitive** dependencies resulting from your explicit logical dependencies, such as `urllib3` and `certifi` in the example above.
 - [pyenv](https://github.com/pyenv/pyenv) - Pyenv is not actually a _virtual environment_ management tool _per se_, but instead is a Python _version_ management tool. It allows you to install multiple versions of the Python compiler/run-time and switch between them quickly and easily. Each time you add a new Python version, pyenv downloads the source code for that version and compiles it from scratch, so you also have flexibility with optimizations and so forth with the Python installation, as well.
+
+## Generate random strings in Python
+A common task in Python programming is generating random strings, such as passwords or dictionary keys. Here are some simple techniques for generating random strings of most any length using the Python [`random`](https://docs.python.org/3/library/random.html) and [`string`](https://docs.python.org/3/library/string.html) modules.
+
+First, you need to determine the population of characters to use for your random strings. Good choices include the following constants from the `string` module:
+- [`ascii_lowercase`](https://docs.python.org/3/library/string.html#string.ascii_lowercase) - `'abcdefghijklmnopqrstuvwxyz'`
+- [`ascii_uppercase`](https://docs.python.org/3/library/string.html#string.ascii_uppercase) - `'ABCDEFGHIJKLMNOPQRSTUVWXYZ'`
+- [`ascii_letters`](https://docs.python.org/3/library/string.html#string.ascii_letters) - The combination of `ascii_lowercase` and `ascii_letters`.
+- [`digits`](https://docs.python.org/3/library/string.html#string.digits) - `'0123456789'`
+- [`punctuation`](https://docs.python.org/3/library/string.html#string.punctuation) - `!"#$%&'()*+,-./:;<=>?@[\\]^_\`{|}~`
+Several of the `punctuation` don't make great choices for such things as passwords, so perhaps you want to define your own subset like:
+```python
+SPECIAL_CHARS = '!#$%^&+-_=/@~'
+```
+You can then use any combination of these by concatenating them together:
+```python
+RAND_STR_CHARS = "".join(string.ascii_uppercase, string.digits, SPECIAL_CHARS)
+```
+If you want some of the characters to be more likely to be selected, just include them more than once in your definition of `RAND_STR_CHARS`.
+
+### Use `lambda` function for simple random string generator
+Now, you can create a simple `lambda` function that allows you pass in the length of string to generate.
+```python
+import random
+import string
+
+RAND_STR_CHARS = "".join(string.ascii_uppercase, string.digits, SPECIAL_CHARS)
+
+# lambda function to generate random string of length _n_
+rand_str = lambda n: "".join(random.SystemRandom().choice(RAND_STR_CHARS) for _ in range(n))
+
+# Generate a random string of 10 characters
+rand_str_10 = rand_str(10)
+```
+
+### Use UUID module
+Another quick way to generate _unique_ random strings is to use the Python [`uuid`](https://docs.python.org/3/library/uuid.html) module. Since this module conforms to [RFC 4122](https://tools.ietf.org/html/rfc4122.html) the results are guaranteed to be unique. In particular, you can use the [`uuid4()`](https://docs.python.org/3/library/uuid.html#uuid.uuid4) method, which returns a _unique_ 36-character value, including **4** hyphens, or 32 [_hexadecimal_](https://en.wikipedia.org/wiki/Hexadecimal) digits: 0123456789ABCDEF. 
+
+If you don't need all 32 hexadecimal digits, you can take a slice from the result, although remember that it may **not** be unique. In the technique below, we randomize the portion of the result returned in the slice to help _reduce_ the likelihood of duplication.
+```python
+import random
+import uuid
+
+# function to generate "random" string _n_ characters long (up to 32-characters)
+def uuid_rand_str(n):
+	n = int(n)
+	if n > 32:
+		raise ValueError("'rand_str' does not support strings greater than 32 characters in length.")
+	slice_start = random.SystemRandom().randint(0, (31-(n-1)))
+	return (uuid.uuid4().hex[slice_start:(slice_start+(n-1))])
+	
+# Generate a "random" string of 22 characters
+rand_str_22 = uuid_rand_str(22)
+```
+Of course, you aren't _really_ limited to 32 characters with this method. You can simply use `uuid4()` multiple times to get longer strings. For example:
+```python
+def uuid_rand_str(n):
+	n = int(n)
+	# Number of times to run uuid4() method
+	base = (n % 32) + 1
+	slice_start = random.SystemRandom().randint(0, (((base*32)-1)-(n-1)))
+	uuid_str = ""
+	for _ in range(base):
+		uuid_str = uuid_str.join(uuid.uuid4().hex)
+	return (uuid_str[slice_start:(slice_start+(n-1))])
+	
+# Generate a "random" string of 100 characters
+rand_str_22 = uuid_rand_str(100)
+```
