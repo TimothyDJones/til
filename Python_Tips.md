@@ -229,5 +229,5 @@ def uuid_rand_str(n):
     return (uuid_str[slice_start:(slice_start+(n-1))])
     
 # Generate a "random" string of 100 characters
-rand_str_22 = uuid_rand_str(100)
+rand_str_100 = uuid_rand_str(100)
 ```
