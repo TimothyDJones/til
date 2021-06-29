@@ -231,3 +231,23 @@ def uuid_rand_str(n):
 # Generate a "random" string of 100 characters
 rand_str_100 = uuid_rand_str(100)
 ```
+
+## Install Python package to global environment with `pip`
+In most cases, you should use Python [virtual environments](https://docs.python.org/3/library/venv.html) for your work. However, in some situations, you may need to install a package globally, such as for linters (code-formatting checkers) like [pylint](https://pylint.org/) or [flake8](https://flake8.pycqa.org/) or the [IPython](http://ipython.org/) shell.
+
+Typically, if you try to run `pip` against the global environment you'll get an error similar to the following.
+```bash
+$ python3 -m pip install flake8
+ERROR: Could not find an activated virtualenv (required).
+```
+On Windows, this error will occur even if you are running as Administrator.
+
+To correct the problem, you need to _temporarily_ disable the virtual environment requirement with the `PIP_REQUIRE_VIRTUALENV` environment variable. In Linux/Unix, at the shell prompt:
+```bash
+$ export PIP_REQUIRE_VIRTUALENV=false
+```
+And on Windows, at the command or Powershell prompt:
+```powershell
+$ set PIP_REQUIRE_VIRTUALENV=false
+```
+In the same shell prompt, run your `pip` install command as normal.
