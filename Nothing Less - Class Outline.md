@@ -25,20 +25,20 @@
 
 
 ### Week 3 - "Faith or Allegiance" (or "Faith versus Allegiance")
-- Gk. pistis
-- Latin fidelis
-  - semper fidelis - Marine Corps motto
+- Gk. _pistis_
+- Latin _fidelis_
+  - _semper fidelis_ - Marine Corps motto
   - "Adeste fidelis" - "O Come All Ye Faithful"
 - "I pledge allegiance to the flag..."
   - What do we mean when we say those words?
 - _I Pledge Allegiance to the **Lamb**_
   - Ray Boltz - 1994
   - One of the "classics" of "early" contemporary Christian music.
-  - Chorus
-	I pledge allegiance to the lamb
-	With all my strength
-	With all I am
-	I will seek to honor His commands
-	I pledge allegiance to the Lamb
+  - Chorus  
+	I pledge allegiance to the lamb  
+	With all my strength  
+	With all I am  
+	I will seek to honor His commands  
+	I pledge allegiance to the Lamb  
   - https://www.youtube.com/watch?v=JK4Tn1lLBDI
   - Does it matter that Ray Boltz is gay? Does that change the meaning of the song?
