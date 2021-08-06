@@ -12,9 +12,11 @@ Moreover, if you do any work with Linux servers remotely, such as via SSH, you p
 Tmux is tailormade for these use cases. It's a keyboard-centric tool that provides the convenience of multiple terminal sessions/instances with very low overhead, both in terms of system load and user cognitive load! Likewise, Tmux supports both Emacs and Vim keybindings, so many users don't even need to learn new keyboard shortcuts.
 
 ### Session - Window - Pane
-Tmux is built around the basic paradigm of sessions, windows, and panes. Fundamentally, windows and panes are entirely optional; you can harness most of the of the power of Tmux directly from sessions.
-Sessions provide a "container" for shell instance/environment. Tmux manages these sessions and allows you to only keep open/active the sessions that you are currently using/working in. The others simply continue running in the background (hidden) waiting for you to call them up when needed. When working remotely, such as via SSH, Tmux provides an extra level of "protection" of your work environment in case you lose connectivity of your SSH session. You can simply reconnect, launch Tmux again on the remote machine and re-attach to the session!
-Windows and panes provide a way to logically subdivide a session so that you can have multiple (independent) terminals displayed simultaneously. For example, you can `tail` a log file in one pane, while reading a `man` page in another, and edit a file in Vim in a third.
+Tmux is built around the basic paradigm of **sessions**, **windows**, and **panes**. Fundamentally, windows and panes are entirely optional; you can harness most of the of the power of Tmux directly from sessions.
+
+**Sessions** provide a "container" for the shell instance/environment. Tmux manages these sessions and allows you to only keep open/active the sessions that you are currently using/working in. The others simply continue running in the background (hidden) waiting for you to call them up when needed. When working remotely, such as via SSH, Tmux provides an extra level of "protection" of your work environment in case you lose connectivity of your SSH session. You can simply reconnect, launch Tmux again on the remote machine and re-attach to the session!
+
+**Windows** and **panes** provide a way to logically subdivide a session so that you can have multiple (independent) terminals displayed simultaneously. For example, you can `tail` a log file in one pane, while reading a `man` page in another, and edit a file in Vim in a third.
 
 ## Common Commands
 | Command      | Action |
