@@ -76,3 +76,20 @@ While not a study based _directly_ on any of these books, it takes many ideas an
 	I pledge allegiance to the Lamb  
   - https://www.youtube.com/watch?v=JK4Tn1lLBDI
   - Does it matter that Ray Boltz is gay? Does that change the meaning of the song?
+
+### Week 4 - "Love Thy Neighbor" - Part 1 - "Love"
+- 28 And one of the scribes came up and heard them disputing with one another, and seeing that he answered them well, asked him, “Which commandment is the most important of all?” 29 Jesus answered, “The most important is, ‘Hear, O Israel: The Lord our God, wthe Lord is one. 30 And you shall love the Lord your God with all your heart and with all your soul and with all your mind and with all your strength.’ [Deut. 6:4-5] 31 The second is this: ‘You shall love your neighbor as yourself.’ [Lev. 19:18] There is no other commandment greater than these.” (Mark 12:28-31, ESV)
+- Context of the parable of "The Good Samaritan".
+  - In ancient Israel "neighbor" had a far different meaning than our 21st-century perception. The verse that Jesus quotes in 
+
+### Week 5 - "Love Thy Neighbor" - Part 2 - "Thy Neighbor"
+- Who is my neighbor?
+  - Are people who I disagree with my neighbors?
+  - Are people who look, talk, believe, etc. my neighbors?
+- Why is Jesus statement an _imperative_? What does that mean?
+
+
+-------------------------
+Do we *really* believe that Christ is sufficient? If so, then why do we *repeatedly* fall back on the *old* covenant?
+- The *old* coventant is *obsolete*. It was good, holy, and purposeful, but is no longer in effect.
+- The *old* covenant is *not for us*. The purpose of the covenant that God established with Israel was to establish a nation to blessed by God based on *conditional* blessing until something better came.
