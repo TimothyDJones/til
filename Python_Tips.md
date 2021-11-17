@@ -277,3 +277,5 @@ One quirk to watch for is when using `extend()` with a _single_ string, because 
 >>> c
 [3.14159, 1.4142, 2.71828, 2.236, 1.618]
 ```
+
+[Reference1](https://stackoverflow.com/a/28119966)
