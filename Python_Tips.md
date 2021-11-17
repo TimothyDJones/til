@@ -251,3 +251,29 @@ And on Windows, at the command or Powershell prompt:
 $ set PIP_REQUIRE_VIRTUALENV=false
 ```
 In the same shell prompt, run your `pip` install command as normal.
+
+## Difference between `append` and `extend` for lists
+In most cases, for [`list`](https://docs.python.org/3/library/stdtypes.html#lists) data, we use the Python `append()` operator to add new items to an existing list. However, this has the (usually) unwanted behavior that when the type of the item added is _itself_ a list, then list is added as a sub-list. To add the _elements_ of the list to the end of the existing list instead, we can use the `extend()` operator instead.
+
+One quirk to watch for is when using `extend()` with a _single_ string, because Python will add _each_ of the characters as elements to list.
+
+```python
+>>> a = [1, 2, 3, 4]
+>>> b = ["apple", "banana", "cherry"]
+>>> c = [3.14159, 1.4142, 2.71828]
+>>> a.append(10)
+>>> a
+[1, 2, 3, 4, 10]
+>>> a.append([123, 456])
+>>> a
+[1, 2, 3, 4, 10, [123, 456]]
+>>> a.extend([789])
+>>> a
+[1, 2, 3, 4, 10, [123, 456], 789]
+>>> b.extend("date")
+>>> b
+['apple', 'banana', 'cherry', 'd', 'a', 't', 'e']
+>>> c.extend([2.2360, 1.6180])
+>>> c
+[3.14159, 1.4142, 2.71828, 2.236, 1.618]
+```
