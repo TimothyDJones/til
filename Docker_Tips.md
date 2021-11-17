@@ -2,6 +2,33 @@
 
 Tips for using [Docker](https://docker.com/) container/virtualization platform.
 
+## Common Commands
+| Command | Action   |
+|:--------|:---------|
+| `docker run -it ubuntu bash` | Run (start) Docker _image_ named `ubuntu`, downloading it, if necessary, and execute `bash` application in _container_ in interactive (`-it`) mode. |
+| `docker ps -a` | List **all** (`-a`) of the _containers_, running or not. |
+| `docker start --attach container_name` | Launch existing ("reuse") _container_ with name container_name and show output (`--attach`). |
+| `docker stop container_name` | Stop running container named container_name. |
+| `docker rm -f container_name ` | Remove/delete container named container_name and force (`-f`) delete if container is still running. |
+| `docker image ls` | List the Docker _images_ downloaded to the system. |
+
+## Basic Docker Examples
+
+### Publish _local_ directory with Docker Nginx image
+In this example, our HTML, CSS, etc. files are in the `/var/local/html` directory.
+```
+docker run -v /var/local/html:/usr/share/nginx/html:ro -p 8080:80 -d nginx
+```
+Here's what the various parts of the command mean:
+- `-v /var/local/html:/usr/share/nginx/html:ro`: Maps the local `/var/local/html` directory with our web page resources to `/usr/share/nginx/html` in the container. Specifying `ro` tells Dockers to mount it in read-only mode, meaning that the container can't/won't make any changes.
+- `-p 8080:80`: Maps network service port 80 in the _container_ to port 8080 on the host system (the system running the Docker instance). This means that you would access the web site at port 8080 from the host (e.g., http://127.0.0.1:8080/).
+- `-d`: Detaches the container from the command line session. In other words, the container continues running in the background.
+- `nginx`: The name of the Docker _image_ to use for the _container_.
+
+
+
+[Reference1](https://stackify.com/docker-tutorial/)
+
 ## Install Docker on Ubuntu from Official Repository
 
 ### Remove Any Version of Docker Installed from _Ubuntu_ Repositories
