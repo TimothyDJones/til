@@ -92,7 +92,16 @@ set-option -g prefix C-a
 bind-key C-a send-prefix
 ```
 
+## Using Tmux Copy Mode
+Frequently, you'll need to copy and paste text between windows or panes in Tmux. Tmux has a built-in Copy mode just for this purpose. The basic _workflow_ for Copy mode is:
+1. `prefix` + `[` - Start copy mode. Tmux will show the cursor position in the upper right corner of the active pane.
+2. Move to the start of the text to copy.
+3. <kbd>Ctrl</kbd> + <kbd>Space</kbd> - Start highlighting text to copy. Use regular keyboard navigation to extend the highlighted selection.
+4. <kbd>Alt</kbd> + `w` - Copy the selection to the clipboard.
+5. Navigate to desired target window/pane using normal Tmux commands/keyboard shortcuts.
+6. `prefix` + `]` - Paste clipboard contents at cursor position in target window/pane.
 
+This workflow works fine for copying and pasting from/to Vim editor instances running inside Tmux windows/panes.
 
 ## References
 [Tmux Guide](https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html)  
