@@ -25,10 +25,10 @@ When you create a new **window** (<kbd>Ctrl</kbd>-b + `c` _or_ `tmux new-window`
 | :----------- | :----- |
 | `tmux` | Start new tmux session |
 | `tmux ls` | List all running sessions with number of windows in each |
-| `tmux a[ttach] -t 0` | Re-attach to session 0 |
-| `tmux new -s name` | Create a new session called _name_ |
-| `tmux rename-session -t 0 name` | Rename session 0 to _name_ |
-| `tmux kill-session -t 0` | Terminate session 0 |
+| `tmux a[ttach] -t 0` | Re-attach to session `0`. (If `-t 0` is **not** specified, it will attach to _last used/active_ tmux session.) |
+| `tmux new -s name` | Create a new session called `name` |
+| `tmux rename-session -t 0 name` | Rename session `0` to `name` |
+| `tmux kill-session -t 0` | Terminate session `0` |
 | `tmux list-keys` | Lists all bound keys and associated tmux commands |
 | `tmux list-commands` | Lists all tmux commands and arguments/parameters |
 | `tmux info` | Lists all current tmux sessions, windows, panes, etc. and their pids, etc. |
@@ -40,25 +40,36 @@ All commands initiated with **prefix** key combination, 'C-b' (<kbd>Ctrl</kbd>-b
 
 | Shortcut Key | Command | Action |
 | :----------- | :------ | :----- |
-| `?` | | Help: Display brief shortcut key help |
-| `:` | | Open tmux prompt on status bar |
+| `?` | `list-keys` | Help: Display brief shortcut key help |
+| `:` | | Open tmux prompt in status bar |
+| `[` | `copy-mode` | Opens Copy mode |
 | `s` | `list-sessions` | List _sessions_ |
 | `d` | `detach` | "Detach" from current _session_ (hide the session) |
-| `$` | `rename-session` | Rename current _session_ |
+| `$` | `rename-session` | Rename (or name) current _session_ |
+| `t` | `clock-mode` | Display a clock in current window/pane |
 | `c` | `new-window` | Create a new **window** |
-| `,` | `rename-window` | Rename the current **window** |
-| `&` | | Terminate the current **window** |
+| `,` | `rename-window` | Rename (or name) the current **window** |
+| `&` | `kill-window` | Terminate the current **window** |
 | `0` - `9` | `select-window -t :0-9` | Select **window** by index |
 | `w` | `list-windows` | Show menu of windows and interactively select **window** |
 | `n` | `next-window` | Switch to the _next_ **window** |
 | `p` | `previous-window` | Switch to the _previous_ **window** |
+| | `move-window -t {session_name}:` | Move current **window** to session named `session_name` |
+| | `move-window -t n` | Move current **window** to index `n` in this session (assumes window with index `n` does _not_ exist) |
+| | `swap-window -t n` | Swap current **window** with window with index `n` |
 | `"` | `split-window [-v]` | Split current window/pane _vertically_ (top and bottom) |
 | `%` | `split-window -h` | Split current window/pane _horizontally_ (left and right) |
 | `↑` / `↓` / `←` / `→` | `select-pane -[UDLR]` | Move between panes |
 | `{` or `}` | `swap-pane -[UDLR]` | Swap _contents_ (not index) of panes |
-| <kbd>Ctrl</kbd> + `↑` / `↓` / `←` / `→` | | Resize **pane** in direction of arrow |
-| `;` | | Toggle between current and previous **pane** |
-| `x` | | Terminate the current pane |
+| <kbd>Ctrl</kbd> + `↑` / `↓` / `←` / `→` | `resize-pane -[UDLR] n` | Resize **pane** in direction of arrow by `n` cells |
+| `!` | `break-pane` | Move the current **pane** into new separate **window** |
+| | `join-pane -t n` | Move the current **window** or **pane** to a new **pane** in **window** index `n` |
+| `q` | `display-panes` | Show pane indexes; type desired index to go to that pane. |
+| `o` or `;` | | Toggle between current and previous **pane** |
+| <kbd>Alt</kbd> + `1` - `5` | | Set pane layout to one of [five presets](https://github.com/tmux/tmux/wiki/Getting-Started#window-layouts): even-horizontal, even-vertical, main-horizontal, main-vertical, or tiled |
+| <kbd>Space</kbd> | | Switch to next "standard" window/pane layout |
+| <kbd>Ctrl</kbd> + `o` or <kbd>Alt</kbd> + `o` | `rotate` | Rotate _contents_ (not index) of panes _forwards_ or _backwards_ |
+| `x` | `kill-pane` | Terminate the current pane |
 
 ## Customizing the `tmux.conf` configuration file
 The default settings for Tmux are defined in the application itself, but you can see the global (all users) defaults by running:
@@ -84,5 +95,8 @@ bind-key C-a send-prefix
 
 
 ## References
-[Tmux Guide](https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html)
-[A tmux Crash Course](https://thoughtbot.com/blog/a-tmux-crash-course)
+[Tmux Guide](https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html)  
+[A tmux Crash Course](https://thoughtbot.com/blog/a-tmux-crash-course)  
+[The Tao of tmux](https://tmuxp.git-pull.com/about_tmux.html)  
+[Tmux Linux man page](https://man7.org/linux/man-pages/man1/tmux.1.html)  
+[Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/)
