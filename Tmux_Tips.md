@@ -40,22 +40,25 @@ All commands initiated with **prefix** key combination, 'C-b' (<kbd>Ctrl</kbd>-b
 
 | Shortcut Key | Command | Action |
 | :----------- | :------ | :----- |
-| ? | | Help: Display brief shortcut key help |
-| s | `list-sessions` | List _sessions_ |
-| d | `detach` | "Detach" from current _session_ (hide the session) |
-| $ | `rename-session` | Rename current _session_ |
-| c | `new-window` | Create a new **window** |
-| , | `rename-window` | Rename the current **window** |
-| & | | Terminate the current **window** |
-| 0 - 9 | `select-window -t :0-9` | Select **window** by index |
-| w | `list-windows` | Show menu of windows and interactively select **window** |
-| n | `next-window` | Switch to the _next_ **window** |
-| p | `previous-window` | Switch to the _previous_ **window** |
-| " | `split-window` | Split current window/pane _vertically_ (top and bottom) |
-| % | `split-window -h` | Split current window/pane _horizontally_ (left and right) |
-| ↑ / ↓ / ← / → | `swap-pane -[UDLR]` _or_ `select-pane -[UDLR]` | Move between panes |
-| <kbd>Ctrl</kbd> + ↑ / ↓ / ← / → | | Resize pane in direction of arrow |
-| x | | Terminate the current pane |
+| `?` | | Help: Display brief shortcut key help |
+| `:` | | Open tmux prompt on status bar |
+| `s` | `list-sessions` | List _sessions_ |
+| `d` | `detach` | "Detach" from current _session_ (hide the session) |
+| `$` | `rename-session` | Rename current _session_ |
+| `c` | `new-window` | Create a new **window** |
+| `,` | `rename-window` | Rename the current **window** |
+| `&` | | Terminate the current **window** |
+| `0` - `9` | `select-window -t :0-9` | Select **window** by index |
+| `w` | `list-windows` | Show menu of windows and interactively select **window** |
+| `n` | `next-window` | Switch to the _next_ **window** |
+| `p` | `previous-window` | Switch to the _previous_ **window** |
+| `"` | `split-window [-v]` | Split current window/pane _vertically_ (top and bottom) |
+| `%` | `split-window -h` | Split current window/pane _horizontally_ (left and right) |
+| `↑` / `↓` / `←` / `→` | `select-pane -[UDLR]` | Move between panes |
+| `{` or `}` | `swap-pane -[UDLR]` | Swap _contents_ (not index) of panes |
+| <kbd>Ctrl</kbd> + `↑` / `↓` / `←` / `→` | | Resize **pane** in direction of arrow |
+| `;` | | Toggle between current and previous **pane** |
+| `x` | | Terminate the current pane |
 
 ## Customizing the `tmux.conf` configuration file
 The default settings for Tmux are defined in the application itself, but you can see the global (all users) defaults by running:
