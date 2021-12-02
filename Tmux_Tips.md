@@ -44,6 +44,8 @@ All commands initiated with **prefix** key combination, 'C-b' (<kbd>Ctrl</kbd>-b
 | `:` | | Open tmux prompt in status bar |
 | `[` | `copy-mode` | Opens Copy mode |
 | `s` | `list-sessions` | List _sessions_ |
+| `(` | | Switch to previous _session_ |
+| `)` | | Switch to next _session_ |
 | `d` | `detach` | "Detach" from current _session_ (hide the session) |
 | `$` | `rename-session` | Rename (or name) current _session_ |
 | `t` | `clock-mode` | Display a clock in current window/pane |
@@ -103,9 +105,42 @@ Frequently, you'll need to copy and paste text between windows or panes in Tmux.
 
 This workflow works fine for copying and pasting from/to Vim editor instances running inside Tmux windows/panes.
 
+## Install Tmux on Git for Windows
+[Git for Windows](https://gitforwindows.org/) is a special version of the [MSYS2](https://www.msys2.org/) with some customizations for better integration with Windows. In particular, in my experience, MSYS2 with Git does not work properly with [Visual Studio Code](https://code.visualstudio.com/), while Git for Windows works perfectly without any tweaking. However, Git for Windows version of MSYS2 does not include many of the other tools that are available in the standard MSYS2 installation, including Tmux. Nevertheless, we can install Tmux from the MSYS2 repositories with a little bit of effort.
+
+Before making these changes, you should back up the Git for Windows installation directory, typically `C:\Program Files\Git`. You can simply copy this directory to another folder so that you have a backup in case something goes wrong in the update process.
+
+Newer packages from the MSYS repositories <[http://repo.msys2.org/msys/x86_64/](http://repo.msys2.org/msys/x86_64/)> use Facebook's new [Zstandard compression](http://facebook.github.io/zstd/). These files have `.zst` file extension. To decompress them, you will need to download the [zstd for Windows](https://sourceforge.net/projects/zstd-for-windows/files/) native Windows tool. Place the tool in a directory in your path, such as `C:\Windows`, since you will be running this tool from the Windows Command Prompt.
+
+In addition, you will also need a tool capable of extracting `tar` archives. Fortunately, the Git for Windows installation includes the `tar` utility as one of the standard tools. Or your can use a GUI tools such as [7-Zip](https://www.7-zip.org/), which supports this archive type.
+
+In addition to the Tmux executable itself, a few other files from the standard MSYS2 installation, particularly from the [`libevent`](https://packages.msys2.org/base/libevent) library, are needed. So we will download several packages from the [MSYS2 repositories](http://repo.msys2.org/msys/x86_64/). Since packages are updated frequently, the version numbers of the packages may change. Accordingly, in the list below, the version numbers are represented by `x.y.z-p`. You will need to replace these with the current/latest version number.
+```bash
+libevent-x.y.z-p-x86_64.pkg.tar.xz
+tmux-x.y.z-p-x86_64.pkg.tar.zst
+```
+
+To decompress the Zstandard compressed files, run the native Windows `zstd` tool (see above) at a **Windows Command Prompt** with the `-d` ("decompress") option:
+```bash
+zstd -d tmux-x.y.z-p-x86_64.pkg.tar.zst
+```
+This will give you two `tar` archives that can then be extracted using the `tar` tool at the **Git Bash prompt**:
+```bash
+tar -xvf tmux-x.y.z-p-x86_64.pkg.tar
+tar -Jxvf libevent-x.y.z-p-x86_64.pkg.tar.xz
+```
+
+Since you have updated the files in the running Git Bash session, you will need to close the Git Bash prompt and open a new session. (Note: Tmux _only_ works with the [MinTTY](https://mintty.github.io/) version of Git Bash (`git-bash.exe`). If you usually use the native `bash.exe` or `git-cmd.exe` Git prompts, you'll get the error `open terminal failed: not a terminal` when trying to run Tmux.) 
+
+In the new Git Bash instance, launch a new Tmux session normally by running `tmux`. You should see the usual Tmux status bar and you'll be able to use the normal Tmux functions and keyboard shortcuts. Likewise, if you run Git Bash (again, the MinTTY version) in [ConEmu](https://conemu.github.io/), Tmux works just fine in it, as well.
+
+[Reference](https://blog.pjsen.eu/?p=440)
+
+
 ## References
 [Tmux Guide](https://tmuxguide.readthedocs.io/en/latest/tmux/tmux.html)  
 [A tmux Crash Course](https://thoughtbot.com/blog/a-tmux-crash-course)  
 [The Tao of tmux](https://tmuxp.git-pull.com/about_tmux.html)  
 [Tmux Linux man page](https://man7.org/linux/man-pages/man1/tmux.1.html)  
-[Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/)
+[Tmux Cheat Sheet & Quick Reference](https://tmuxcheatsheet.com/)  
+[Copy text from one tmux pane to another (using Vim)](https://unix.stackexchange.com/a/58765)
