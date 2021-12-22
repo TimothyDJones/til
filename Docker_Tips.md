@@ -2,6 +2,11 @@
 
 Tips for using [Docker](https://docker.com/) container/virtualization platform.
 
+## Docker Terminology
+- [Dockerfile](): A specification (plan) for building a Docker _image_.
+- Image: A template for Docker containers that has a specific purpose.
+- Container: An instance (either running or finished) of an _image_ for running process/application.
+
 ## Common Commands
 | Command | Action   |
 |:--------|:---------|
