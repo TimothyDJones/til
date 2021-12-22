@@ -3,9 +3,9 @@
 Tips for using [Docker](https://docker.com/) container/virtualization platform.
 
 ## Docker Terminology
-- [Dockerfile](https://docs.docker.com/engine/reference/builder/): A specification (plan) for building a Docker _image_.
-- Image: A template for Docker containers that has a specific purpose.
-- Container: An instance (either running or finished) of an _image_ for running process/application.
+- [**Dockerfile**](https://docs.docker.com/engine/reference/builder/): A specification (plan) for building a Docker _image_.
+- **Image**: A template for Docker containers that has a specific purpose. Basically, the image provides the custom **file system** structure required for the application.
+- **Container**: An instance (either running or finished) of an _image_ for running process/application. Containers are isolated from other processes on the _host_ machine using Linux [kernel namespaces](https://medium.com/@saschagrunert/demystifying-containers-part-i-kernel-space-2c53d6979504) and [cgroups](https://www.nginx.com/blog/what-are-namespaces-cgroups-how-do-they-work/), which have been part of Linux for a long time.
 
 ## Common Commands
 | Command | Action   |
