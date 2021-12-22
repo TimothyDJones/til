@@ -3,7 +3,7 @@
 Tips for using [Docker](https://docker.com/) container/virtualization platform.
 
 ## Docker Terminology
-- [Dockerfile](): A specification (plan) for building a Docker _image_.
+- [Dockerfile](https://docs.docker.com/engine/reference/builder/): A specification (plan) for building a Docker _image_.
 - Image: A template for Docker containers that has a specific purpose.
 - Container: An instance (either running or finished) of an _image_ for running process/application.
 
@@ -33,6 +33,11 @@ Here's what the various parts of the command mean:
 
 
 [Reference1](https://stackify.com/docker-tutorial/)
+
+### Build a containerized Node.JS/Express.JS application with PostgreSQL using Docker Compose
+
+[Reference](https://dev.to/alexeagleson/docker-for-javascript-developers-41me)
+[GitHub Repository](https://github.com/alexeagleson/docker-node-postgres-template)
 
 ## Install Docker on Ubuntu from Official Repository
 
