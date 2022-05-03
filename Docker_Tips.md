@@ -168,3 +168,113 @@ sudo rm -rf /var/run/docker.sock
 ```
 
 [Reference](https://itectec.com/ubuntu/ubuntu-how-to-completely-uninstall-docker/)
+
+## Run Docker on Windows 10 *without* Docker Desktop
+Docker changed their licensing model recently and many developers must now use the new subscription-based model to use Docker Desktop tool. However, frequently, developers only use the command-line tools in their day-to-day work and so the Docker Desktop tool is overkill for their needs anyway. 
+
+This article explains how to run Docker on Windows in a very simple command-line-only configuration. And it works on even relatively old Windows 10 systems, including those with Windows Subsystem for Linux (WSL) 1. Essentially, we will be running the Docker daemon (or "service", if you prefer) in a Virtualbox _or_ Hyper-V virtual machine (VM) and accessing it from our Windows 10 host machine in WSL or PowerShell (or Windows Command Prompt).
+
+### What You Need
+To use this configuration, we will use the following environment.
+- Windows 10
+- WSL 1 or WSL 2 with Ubuntu 20.04
+- Virtualbox 6.2 with Ubuntu 20.04 guest **or** Hyper-V with Ubuntu 20.04 guest
+As noted, we can use either Virtualbox or Hyper-V for the virtualization platform. This allows Windows 10 Home users to use this process, even though they do not Hyper-V support on their platform.
+
+### Install Ubuntu 20.04 in WSL
+Install Ubuntu 20.04 (or 18.04) in WSL according to the standard installation process. Here is a brief outline of the process.
+1. To install WSL, open PowerShell (or Windows Command Prompt) and run
+```bash
+wsl.exe --install
+```
+2. By default, the WSL installation will install Ubuntu. You can also check for other available distributions and versions:
+```bash
+wsl.exe --list --online
+```
+3. Then, you can install one of the available distributions from this list:
+```bash
+wsl.exe --install -d <distroname>
+```
+where `<distroname>` is the name from the earlier list, such as `ubuntu2004`.
+
+### Install Virtualbox or Hyper-V Virtualization Platform
+As explained earlier, you can use *either* [Virtualbox](https://www.virtualbox.org/) or [Hyper-V](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/) virtualization platform, depending on your preference and what is supported in your environment. Simply follow the standard installation process for the selected tool. (Note that you **cannot** use _both_ Virtualbox and Hyper-V simultaneously due to the Hyper-V architecture.)
+- [Installing Virtualbox on Windows Hosts](https://www.virtualbox.org/manual/ch02.html#installation_windows)
+- [Install Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/enable-hyper-v)
+
+### Install Ubuntu Linux Guest in Virtualbox or Hyper-V
+After installing Virtualbox or Hyper-V, you will need to install Ubuntu (or other Debian-based) Linux as a guest operating system (OS) on the virtualization platform. You can install a standard GUI version or a very minimal command-line only version. This guest OS will only run Docker daemon (or "service") process, so the OS GUI is entirely optional.
+
+Follow the standard installation process for either Virtualbox or Hyper-V for installing guest OSes. Make sure to allocate at least **2GB** of RAM to the guest.
+- [Creating Your First Virtualbox Virtual Machine](https://www.virtualbox.org/manual/ch01.html#gui-createvm)
+- [Create Virtual Machine with Hyper-V on Windows 10](https://docs.microsoft.com/en-us/virtualization/hyper-v-on-windows/quick-start/create-virtual-machine)
+
+### Install Docker Daemon on Ubuntu Linux Guest in Virtualbox or Hyper-V
+Once you've successfully installed Ubuntu as a guest OS in Virtualbox or Hyper-V, in that Ubuntu instance (and **not** the WSL instance _yet_!), install the Docker daemon application. Again, we will be running the Docker daemon in the _guest_ virtual machine (VM) and accessing it from our Windows 10 _host_ machine.
+
+Update the Ubuntu packages.
+```bash
+sudo apt update
+sudo apt upgrade -yy
+```
+
+Remove any existing Docker installation from standard Ubuntu repositories. (If you just installed Ubuntu guest OS, it's unlikely that they are installed, but it doesn't hurt to check.)
+```bash
+sudo apt remove docker docker-engine docker.io containerd runc -y
+```
+
+Configure the official Docker repository and install Docker from it.
+```bash
+source /etc/os-release
+curl -fsSL https://download.docker.com/linux/${ID}/gpg | sudo apt-key add -
+echo "deb [arch=amd64] https://download.docker.com/linux/${ID} ${VERSION_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/docker.list
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io
+```
+
+The installation process creates a `docker` group in Linux. We need to add our user to that group to allow us to run Docker commands without using `sudo`.
+```bash
+sudo usermod -a -G docker ${USER}
+```
+You must close the terminal window and open a new one (or log out and log back in, if you are using a console/command-prompt only VM) to get a session in which your user belongs to the `docker` group. To confirm, run the `groups` command and ensure that `docker` is included in the list (it will probably be the last one).
+
+To verify that everything is working properly, while still in our Linux guest VM, run `docker info`. You should see some output divided up into `Client` and `Server` sections. See the [`docker info`](https://docs.docker.com/engine/reference/commandline/info/) command documentation for details and examples.
+
+### Configure Docker Daemon for External Access on Ubuntu Linux Guest in Virtualbox or Hyper-V
+Now that the Docker daemon is installed and working, we need to make it accessible outside of the Virtualbox or Hyper-V guest OS. For our case, to simplify things, we will configure it **without** encryption. Obviously, this involves some risk, but presumably, we will only be accessing from within the same machine. You can learn more about this in the [Docker security documentation](https://docs.docker.com/engine/security/#docker-daemon-attack-surface).
+
+Create a [systemd](https://en.wikipedia.org/wiki/Systemd) service directory for our configuration and create the daemon (service) configuration file.
+```bash
+sudo mkdir -p /etc/systemd/system/docker.service.d
+sudo nano /etc/systemd/system/docker.service.d/options.conf
+```
+
+In `options.conf` add the following lines and save the file. Note that there indeed _two_ lines starting with `ExecStart=`.
+```bash
+[Service]
+ExecStart=
+ExecStart=/usr/bin/dockerd -H unix:// -H tcp://0.0.0.0:2375
+```
+
+Refresh the `systemd` configuration and restart Docker.
+```bash
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+```
+
+Presumably, you won't receive any errors on restart. In any case, you can check that the Docker daemon restarted (is running) by running `sudo systemctl status docker`, if you like.
+
+Basically, this configuration allows local connections from within the Virtualbox or Hyper-V guest OS VM via `-H unix://` and from **any** external client over TCP on port 2375 via `-H tcp://0.0.0.0:2375`.
+
+### Determine the IP Address of Ubuntu Linux Guest in Virtualbox or Hyper-V
+The final step involving the Ubuntu Linux guest OS in Virtualbox or Hyper-V is to determine its IPv4 address. We need this IP address to use on the host (WSL or PowerShell) to connect to the Docker daemon remotely.
+
+
+
+
+
+### References
+[Use Docker for Windows in WSL1](https://pscheit.medium.com/use-docker-for-windows-in-wsl-8fc96ece67c8)  
+[How to run docker on Windows without Docker Desktop](https://dev.to/_nicolas_louis_/how-to-run-docker-on-windows-without-docker-desktop-hik)  
+[Setting Up Docker for Windows and WSL to Work Flawlessly](https://nickjanetakis.com/blog/setting-up-docker-for-windows-and-wsl-to-work-flawlessly)  
+[Docker Tip #73: Connecting to a Remote Docker Daemon](https://nickjanetakis.com/blog/docker-tip-73-connecting-to-a-remote-docker-daemon)

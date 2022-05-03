@@ -279,3 +279,62 @@ One quirk to watch for is when using `extend()` with a _single_ string, because 
 ```
 
 [Reference1](https://stackoverflow.com/a/28119966)
+
+## Install Python `cryptography` package on Windows 10
+The Python [`cryptography`](https://cryptography.io/) package depends on several external open-source libraries for implementation of the cryptographic algorithms, including the OpenSSL library. Accordingly, installation of the package requires that some of these libraries be compiled from source during the installation process. 
+
+Recently, the library has moved to using [Rust](https://www.rust-lang.org/) compiler. However, many libraries, such as OpenSSL, still require C/C++ compiler, as well, to build them. On Windows, the recommended compiler is the [Visual Studio C++ **Build** Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/). (Note: This application is _different/separate_ from [Visual Studio](https://visualstudio.microsoft.com/) and [Visual Studio Code](https://code.visualstudio.com/). It is the _free_ compiler suite for C/C++ applications that underpins Visual Studio.)
+
+### Install OpenSSL library/SDK
+Before installing the Visual Studio C++ Build Tools, you will need to install the OpenSSL library/SDK. Install from the [official repository](https://slproweb.com/products/Win32OpenSSL.html), making sure to choose full package (_not_ the "light" version) for the appropriate architecture (Win32 or Win64). 
+
+Ensure that you choose the version of OpenSSL compatible with the version of `cryptography` package that you are installing. For example, the current (as of this writing) version of OpenSSL is 3.0.2, which works fine with current version of `cryptography` (37.x.x). However, if you are installing an earlier version of `cryptography`, you may need to use an earlier version of OpenSSL, such as 1.1.1n. As an example, I found that I had to use OpenSSL **1.1.1n** to compile `cryptography` version **[3.4.7](https://cryptography.io/en/3.4.7/)**.
+
+In general, the default installation settings, including copying the libraries to the Windows directory, should work fine. Make note of the installation directory, as this information will be needed later when compiling the libraries for the `cryptography` package.
+
+### Install Visual Studio C++ Build Tools
+Download and run **as an Administrator** the installation wrapper for Visual Studio C++ Build Tools from the [Microsoft site](https://visualstudio.microsoft.com/visual-cpp-build-tools/). This tool will, in turn, install the Visual Studio installation tool and launch it with the "Build Tools" default selection, which is also called _**Desktop development with C++**_ _workload_. The right pane of the window (**Installation details**) will list the actual components for installation; ensure that you install _at least_ the following items:
+	- **Included**
+		- C++ Build Tools core features
+		- C++ 2019 Redistributable Update
+		- C++ core desktop features
+	- **Optional**
+		- MSVC v142 - VS 2019 C++ x64/x86 build tools
+		- Windows 10 SDK (10.0.19041.0)
+		- C++ CMake tools for Windows
+		- Testing tools core features - Build Tools
+		- C++ AddressSanitizer
+The **Included** tools list is fixed and you won't be able to change it. In addition, some of the items in the **Optional** tools list may have different version numbers; just look the item with the closest name and highest version number. The total installation size is likely to be approximately **6.5 GB**. Continue with the installation after confirming the **Installation details**.
+
+### Install Rust compiler and build tools
+The [Rust](https://www.rust-lang.org/) installation is quite straightforward. Download the `rustup` launcher (`rustup-init.exe`) from from the Rust web site. Open an **Administrator** Windows Command Prompt and run `rustup-init.exe` from it. Follow the default prompts, which will configure Rust in your "home" directory. Close the Windows Command Prompt after successful installation, so that environment changes are active in the next step.
+
+### Install the `cryptography` package
+Open a Windows Command Prompt. (This Command Prompt does _NOT_ require Administrator privileges.) Configure the Command Prompt environment for running the Visual Studio C++ Build Tools C++ compiler by running the `vcvarsall.bat` script; if you used the default directory for installation, it will be in `C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build` directory. Typically, the command will be:
+```bash
+C:\> "C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build\vcvarsall.bat" x86_amd64
+```
+Failure to set the environment configuration via `vcvarsall.bat` script will typically result in an error similar to:
+```bash
+pyconfig.h(59): fatal error C1083: Cannot open include file: 'io.h': No such file or directory
+```
+(If you are missing the `vcvarsall.bat` script, then you probably did not install the Windows 10 SDK optional component when installing Visual Studio C++ Build Tools.)
+
+We also need to set the `INCLUDE` and `LIB` environment variables to reference the appropriate directories for OpenSSL, per the [`cryptography` install documentation](https://cryptography.io/en/latest/installation/#building-cryptography-on-windows). Assuming that you installed OpenSSL to the default directory (`C:\Program Files\OpenSSL-win64`), the commands will be:
+```bash
+C:\> set INCLUDE=C:\Program Files\OpenSSL-win64\include;%INCLUDE%
+C:\> set LIB=C:\Program Files\OpenSSL-win64\lib;%LIB%
+```
+
+Now, we are _almost_ ready to install `cryptography` package! Ensure that you are in the desired virtual environment (unless you intend to install globally and have your future virtual environments inherit this configuration); for example, you might run `.venv/Scripts/activate.bat` from within your project directory. After activating the virtual environment, install `cryptography` package using `pip` as usual:
+```bash
+C:\> python -m pip install cryptography
+```
+During the installation, you'll see the usual process of downloading the various wheel packages. Likewise, `pip` will download the required source files for the binary packages and compile and install them. Ultimately, the installation should complete with message similar to:
+```bash
+Installing collected packages: cryptography
+  Running setup.py install for cryptography ... done
+Successfully installed cryptography-37.0.1
+```
+
+[Reference1](https://community.home-assistant.io/t/windows-10-failed-building-wheel-for-cryptography/233257)
