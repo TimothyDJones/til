@@ -294,16 +294,16 @@ In general, the default installation settings, including copying the libraries t
 
 ### Install Visual Studio C++ Build Tools
 Download and run **as an Administrator** the installation wrapper for Visual Studio C++ Build Tools from the [Microsoft site](https://visualstudio.microsoft.com/visual-cpp-build-tools/). This tool will, in turn, install the Visual Studio installation tool and launch it with the "Build Tools" default selection, which is also called _**Desktop development with C++**_ _workload_. The right pane of the window (**Installation details**) will list the actual components for installation; ensure that you install _at least_ the following items:
-	- **Included**
-		- C++ Build Tools core features
-		- C++ 2019 Redistributable Update
-		- C++ core desktop features
-	- **Optional**
-		- MSVC v142 - VS 2019 C++ x64/x86 build tools
-		- Windows 10 SDK (10.0.19041.0)
-		- C++ CMake tools for Windows
-		- Testing tools core features - Build Tools
-		- C++ AddressSanitizer
+- **Included**
+  - C++ Build Tools core features
+  - C++ 2019 Redistributable Update
+  - C++ core desktop features
+- **Optional**
+  - MSVC v142 - VS 2019 C++ x64/x86 build tools
+  - Windows 10 SDK (10.0.19041.0)
+  - C++ CMake tools for Windows
+  - Testing tools core features - Build Tools
+  - C++ AddressSanitizer
 The **Included** tools list is fixed and you won't be able to change it. In addition, some of the items in the **Optional** tools list may have different version numbers; just look the item with the closest name and highest version number. The total installation size is likely to be approximately **6.5 GB**. Continue with the installation after confirming the **Installation details**.
 
 ### Install Rust compiler and build tools
