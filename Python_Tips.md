@@ -304,10 +304,11 @@ Download and run **as an Administrator** the installation wrapper for Visual Stu
   - C++ CMake tools for Windows
   - Testing tools core features - Build Tools
   - C++ AddressSanitizer
-The **Included** tools list is fixed and you won't be able to change it. In addition, some of the items in the **Optional** tools list may have different version numbers; just look the item with the closest name and highest version number. The total installation size is likely to be approximately **6.5 GB**. Continue with the installation after confirming the **Installation details**.
+
+The **Included** tools list is fixed and you won't be able to change it. In addition, some of the items in the **Optional** tools list may have different version numbers; just look for the item with the closest name and highest version number. The total installation size is likely to be approximately **6.5 GB** (actual download size is approximately 25% of this total). Continue with the installation after confirming the **Installation details**.
 
 ### Install Rust compiler and build tools
-The [Rust](https://www.rust-lang.org/) installation is quite straightforward. Download the `rustup` launcher (`rustup-init.exe`) from from the Rust web site. Open an **Administrator** Windows Command Prompt and run `rustup-init.exe` from it. Follow the default prompts, which will configure Rust in your "home" directory. Close the Windows Command Prompt after successful installation, so that environment changes are active in the next step.
+The [Rust](https://www.rust-lang.org/) installation is quite straightforward. Download the `rustup` launcher (`rustup-init.exe`) from from the [Rust web site](https://www.rust-lang.org/tools/install). Open an **Administrator** Windows Command Prompt and run `rustup-init.exe` from it. Follow the default prompts, which will configure Rust in your "home" directory (i.e., `C:\Users\_user_name_`). Close the Windows Command Prompt after successful installation, so that environment changes are active in the next step.
 
 ### Install the `cryptography` package
 Open a Windows Command Prompt. (This Command Prompt does _NOT_ require Administrator privileges.) Configure the Command Prompt environment for running the Visual Studio C++ Build Tools C++ compiler by running the `vcvarsall.bat` script; if you used the default directory for installation, it will be in `C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\VC\Auxiliary\Build` directory. Typically, the command will be:
