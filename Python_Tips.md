@@ -48,6 +48,7 @@ Tips and important things that I've learned for the [Python](https://www.python.
 ### Free Books
 
 - [Python Crash Course, Second Edition](https://ehmatthes.github.io/pcc_2e/regular_index/) - [Eric Matthes](https://ehmatthes.com/)
+- [Think Python, Second Edition (for Python 3)](https://greenteapress.com/wp/think-python-2e/) - [Allen B. Downey](https://twitter.com/AllenDowney)
 
 ## Modules and Exports
 
