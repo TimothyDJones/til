@@ -38,6 +38,7 @@ Tips and important things that I've learned for the [Python](https://www.python.
 - [Reddit /r/Python](https://old.reddit.com/r/Python/)
 - [Reddit /r/LearnPython](https://old.reddit.com/r/learnpython/)
 - [Reddit /r/MadeInPython](https://old.reddit.com/r/madeinpython/)
+- [Reddit /r/PythonCoding](https://old.reddit.com/r/pythoncoding/)
 - [Reddit /r/CoolGithubProjects](https://old.reddit.com/r/coolgithubprojects/search?q=flair%3A%27python%27&restrict_sr=on&sort=new&t=all#python)
 - [Slashdot](https://slashdot.org/)
 
