@@ -46,9 +46,13 @@ Tips and important things that I've learned for the [Python](https://www.python.
 - [**Official** Python Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide)
 
 ### Free Books
+- [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/ - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) - [Al Sweigart](https://twitter.com/AlSweigart)
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
+- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Learn Python the Hard Way](https://learncodethehardway.org/python/) - [Zed A. Shaw](https://twitter.com/lzsthw)
 - [Python Crash Course, Second Edition](https://ehmatthes.github.io/pcc_2e/regular_index/) - [Eric Matthes](https://ehmatthes.com/)
+- [Python Succinctly](https://www.syncfusion.com/succinctly-free-ebooks/python) - Jason Cannon
 - [Think Python, Second Edition (for Python 3)](https://greenteapress.com/wp/think-python-2e/) - [Allen B. Downey](https://twitter.com/AllenDowney)
 
 ## Modules and Exports
