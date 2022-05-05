@@ -53,6 +53,7 @@ Tips and important things that I've learned for the [Python](https://www.python.
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Learn Python the Hard Way](https://learncodethehardway.org/python/) - [Zed A. Shaw](https://twitter.com/lzsthw)
+- [Learn Python the Right Way](https://learnpythontherightway.com/) - Unknown
 - [Python Crash Course, Second Edition](https://ehmatthes.github.io/pcc_2e/regular_index/) - [Eric Matthes](https://ehmatthes.com/)
 - [Python Notes for Professionals](https://docs.google.com/viewer?url=https://books.goalkicker.com/PythonBook/PythonNotesForProfessionals.pdf) - [GoalKicker.com](https://goalkicker.com/)
 - [Python Succinctly](https://www.syncfusion.com/succinctly-free-ebooks/python) - Jason Cannon
