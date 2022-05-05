@@ -47,6 +47,7 @@ Tips and important things that I've learned for the [Python](https://www.python.
 
 ### Free Books
 - [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/ - [Jake VanderPlas](http://twitter.com/jakevdp)
+- [Architecture Patterns with Python: Enabling Test-Driven Development, Domain-Driven Design, and Event-Driven Microservices](https://www.cosmicpython.com/book/preface.html) - [Harry J. W. Percival](https://twitter.com/hjwp), [Bob Gregory](https://twitter.com/bob_the_mighty)
 - [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) - [Al Sweigart](https://twitter.com/AlSweigart)
 - [IPython Interactive Computing and Visualization Cookbook, Second Edition](https://ipython-books.github.io/) - [Cyrille Rossant](https://cyrille.rossant.net/)
 - [Practical Python Projects Book](https://practicalpython.yasoob.me/) - [Yasoob Khalid](https://twitter.com/yasoobkhalid)
