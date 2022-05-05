@@ -48,6 +48,7 @@ Tips and important things that I've learned for the [Python](https://www.python.
 ### Free Books
 - [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/ - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) - [Al Sweigart](https://twitter.com/AlSweigart)
+- [IPython Interactive Computing and Visualization Cookbook, Second Edition](https://ipython-books.github.io/) - [Cyrille Rossant](https://cyrille.rossant.net/)
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Learn Python the Hard Way](https://learncodethehardway.org/python/) - [Zed A. Shaw](https://twitter.com/lzsthw)
