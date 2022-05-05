@@ -20,6 +20,7 @@ Tips and important things that I've learned for the [Python](https://www.python.
 - [CodeSkulptor3](https://py3.codeskulptor.org/) - Supports GUI applications
 - [IDEOne.com](https://ideone.com/l/python-3)
 - [JDoodle](https://www.jdoodle.com/python3-programming-online/)
+- [Natto](https://python.natto.dev/) - Multiple embedded panes in single window.
 - [Paiza.io](https://paiza.io/en/projects/new?language=python3)
 - [Programiz](https://www.programiz.com/python-programming/online-compiler/)
 - [Online Python](https://www.online-python.com/)
