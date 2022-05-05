@@ -46,7 +46,7 @@ Tips and important things that I've learned for the [Python](https://www.python.
 - [**Official** Python Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide)
 
 ### Free Books
-
+- [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) - [Al Sweigart](https://twitter.com/AlSweigart)
 - [Python Crash Course, Second Edition](https://ehmatthes.github.io/pcc_2e/regular_index/) - [Eric Matthes](https://ehmatthes.com/)
 - [Think Python, Second Edition (for Python 3)](https://greenteapress.com/wp/think-python-2e/) - [Allen B. Downey](https://twitter.com/AllenDowney)
 
