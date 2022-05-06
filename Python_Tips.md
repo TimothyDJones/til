@@ -46,14 +46,13 @@ Tips and important things that I've learned for the [Python](https://www.python.
 - [**Official** Python Beginner's Guide](https://wiki.python.org/moin/BeginnersGuide)
 
 ### Free Books
-- [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/ - [Jake VanderPlas](http://twitter.com/jakevdp)
+- [A Whirlwind Tour of Python](https://jakevdp.github.io/WhirlwindTourOfPython/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Architecture Patterns with Python: Enabling Test-Driven Development, Domain-Driven Design, and Event-Driven Microservices](https://www.cosmicpython.com/book/preface.html) - [Harry J. W. Percival](https://twitter.com/hjwp), [Bob Gregory](https://twitter.com/bob_the_mighty)
 - [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) - [Al Sweigart](https://twitter.com/AlSweigart)
 - [Dive Into Python 3](https://diveintopython3.net/) - [Mark Pilgrim](https://en.wikipedia.org/wiki/Mark_Pilgrim)
 - [IPython Interactive Computing and Visualization Cookbook, Second Edition](https://ipython-books.github.io/) - [Cyrille Rossant](https://cyrille.rossant.net/)
 - [Practical Python Programming](https://dabeaz-course.github.io/practical-python/Notes/Contents.html) - [David Beazley](https://twitter.com/dabeaz)
 - [Practical Python Projects Book](https://practicalpython.yasoob.me/) - [Yasoob Khalid](https://twitter.com/yasoobkhalid)
-- [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Python Data Science Handbook](https://jakevdp.github.io/PythonDataScienceHandbook/) - [Jake VanderPlas](http://twitter.com/jakevdp)
 - [Learn Python the Hard Way](https://learncodethehardway.org/python/) - [Zed A. Shaw](https://twitter.com/lzsthw)
 - [Learn Python the Right Way](https://learnpythontherightway.com/) - Unknown
