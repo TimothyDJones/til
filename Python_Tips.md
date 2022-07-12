@@ -353,3 +353,26 @@ Successfully installed cryptography-37.0.1
 ```
 
 [Reference1](https://community.home-assistant.io/t/windows-10-failed-building-wheel-for-cryptography/233257)
+
+## Various tips for `datetime` class
+The Python `[datetime](https://docs.python.org/3/library/datetime.html)` class is one of the most important, but least understood, in the Standard Library. Here are a few tips that I've picked up.
+
+### Create a **timezone-aware** `datetime` object set to "now"
+```python
+from datetime import datetime, timezone
+n = datetime.now(tz=timezone.utc)
+```
+**OR**
+```python
+from datetime import datetime, timezone
+n = datetime.now()
+n.replace(tzinfo=timezone.utc)
+```
+
+### Remove microseconds from `datetime` object when formatting with `isoformat()`
+```python
+from datetime import datetime, timezone
+n = datetime.now(tz=timezone.utc).isoformat(timespec="seconds")
+```
+
+
