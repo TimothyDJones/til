@@ -375,4 +375,37 @@ from datetime import datetime, timezone
 n = datetime.now(tz=timezone.utc).isoformat(timespec="seconds")
 ```
 
+## Use `copy.deepcopy` to avoid unexpected results with mutable objects
+By design, using assignment operator (`=`) in Python creates another **reference** to the same object. In the case of a dictionary, this means that if you create a new reference via assignment and make a change to the second reference, those changes will also be reflected on the original reference (instance), as well. For example:
+```python
+>>> colors = {"red": 5, "blue": 2, "orange": 3}
+>>> id(colors)
+2435811006864
+>>> more_colors = colors
+>>> id(more_colors)
+2435811006864
+>>> more_colors["purple"] = 7
+>>> colors
+{'red': 5, 'blue': 2, 'orange': 3, 'purple': 7}
+```
+If you want `more_colors` to have a distinct identity (and `colors` to **not** be changed when you change `more_colors`!), you should make a `deepcopy` of `colors` when creating `more_colors`. The `deepcopy` method is part of the Python [`copy`](https://docs.python.org/3/library/copy.html) module of the Standard Library.
+```python
+>>> from copy import deepcopy
+>>> colors = {"red": 5, "blue": 2, "orange": 3}
+>>> id(colors)
+2435811478048
+>>> more_colors = deepcopy(colors)
+>>> id(more_colors)
+2435811479200
+>>> more_colors["purple"] = 13
+>>> colors
+{'red': 5, 'blue': 2, 'orange': 3}
+>>> more_colors
+{'red': 5, 'blue': 2, 'orange': 3, 'purple': 13}
+```
+
+[Reference1](https://stackoverflow.com/questions/2465921/how-to-copy-a-dictionary-and-only-edit-the-copy/2465951#2465951)
+
+
+
 
