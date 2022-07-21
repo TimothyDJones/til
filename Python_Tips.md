@@ -130,7 +130,7 @@ Type "help", "copyright", "credits" or "license" for more information.
 ```
 
 ### Deactivate
-Before we look at using our virtual environment, let's discuss how to _deactivate_ it. When we finished with a specific virtual environment, such as when we want to switch to another project, we want to make sure that we deactivate the virtual environment. This is necessary to avoid accidentally installing a package (or the wrong version of a package!) in that environment.
+Before we look at using our virtual environment, let's discuss how to _deactivate_ it. When we finish with a specific virtual environment, such as when we want to switch to another project, we want to make sure that we deactivate the virtual environment. This is necessary to avoid accidentally installing a package (or the wrong version of a package!) in that environment.
 
 To deactivate our `venv`, we simply "undo" the _activate_ process from above. In Windows, run:
 ```bash

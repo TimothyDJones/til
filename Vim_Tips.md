@@ -66,7 +66,12 @@ Likewise, to see the full path and file name of your _user_ configuration file, 
 ## Indent/Outdent Multiple Lines
 The quickest way to indent/outdent multiple lines is to enter **VISUAL** mode (press <kbd>v</kbd>), then select the desired rows using standard navigation (<kbd>j</kbd> and <kbd>k</kbd>). Then use <kbd>></kbd> to _indent_ and <kbd><</kbd> to _outdent_ the selected text.
 
-[Reference](https://stackoverflow.com/a/7452318)  
+[Reference](https://stackoverflow.com/a/7452318)
+
+## Align Text to Left, Center, and Right
+In addition to indent/outdent, text can be [aligned](http://vimdoc.sourceforge.net/htmldoc/change.html#formatting) to left, center, and right. Simply select the desired text in **VISUAL** mode (or specify the range before the command) and use the appropriate command, `left` (which is essentially _indent_), `center`, or `right`, followed by a numeric modifier. For `left`, the modifier is the number of characters to indent; for `center` and `right`, the modifier is the **width** to use when aligning and it defaults [`textwidth`](http://vimdoc.sourceforge.net/htmldoc/options.html#'textwidth') (or 80 if `textwidth` is 0).
+
+[Reference](https://vimtricks.com/p/vim-text-alignment/)
 
 ## Comment/Uncomment Multiple Lines
 Use [mark](http://vimdoc.sourceforge.net/htmldoc/motion.html#mark) to specify the range of lines to comment. In this example, we use the letter `t`.
