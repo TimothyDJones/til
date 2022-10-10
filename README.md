@@ -24,3 +24,14 @@ git clean -n -f
 
 [Reference](https://stackoverflow.com/a/27664932)
 
+### Merge branch and remove from local and remote
+After completing work on a branch, you can merge back to the `main` branch and remove it from both the local and remote. This example uses the working branch named `working_branch`.
+```bash
+git checkout main
+git pull origin main
+git merge working_branch
+# Fix any merge conflicts, as necessary.
+git push -u origin main
+git branch -d working_branch				# Delete local branch
+git push origin --delete working_branch		# Delete remote branch
+```
