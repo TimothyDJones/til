@@ -32,15 +32,15 @@ git pull origin main
 git merge working_branch
 # Fix any merge conflicts, as necessary.
 git push -u origin main
-git branch -d working_branch				# Delete local branch
-git push origin --delete working_branch		# Delete remote branch
+git branch -d working_branch                # Delete local branch
+git push origin --delete working_branch     # Delete remote branch
 ```
 
 ### Add tags to local and remote
 Git [tags](https://initialcommit.com/blog/git-tag) are useful for maintaining check points of milestones in the development process. Typically, [semantic versioning](https://semver.org/) is recommended for tag numbers. To apply tags:
 ```bash
-git checkout main								# Ensure that you are on main branch.
-git tag -a vX.Y.Z -m "Annotation for this tag."	# Semantic verison tag for version X.Y.Z to local (on current branch).
-git push --tags									# Apply tag to remote.
-git ls-remote --tags							# Display tags on remote.
+git checkout main                               # Ensure that you are on main branch.
+git tag -a vX.Y.Z -m "Annotation for this tag." # Semantic verison tag for version X.Y.Z to local (on current branch).
+git push --tags                                 # Apply tag to remote.
+git ls-remote --tags                            # Display tags on remote.
 ```
