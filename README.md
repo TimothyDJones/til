@@ -34,6 +34,7 @@ git merge working_branch
 git push -u origin main
 git branch -d working_branch                # Delete local branch
 git push origin --delete working_branch     # Delete remote branch
+git fetch --all --prune                     # Remove references to remote branch
 ```
 
 [Reference](https://stackoverflow.com/a/2003515)
