@@ -37,7 +37,8 @@ git push origin --delete working_branch     # Delete remote branch
 git fetch --all --prune                     # Remove references to remote branch
 ```
 
-[Reference](https://stackoverflow.com/a/2003515)
+[Reference1](https://stackoverflow.com/a/2003515)
+[Reference2](https://levelup.gitconnected.com/delete-local-remote-git-branch-1d8c0870eebc)
 
 ### Add tags to local and remote
 Git [tags](https://initialcommit.com/blog/git-tag) are useful for maintaining check points of milestones in the development process. Typically, [semantic versioning](https://semver.org/) is recommended for tag numbers. To apply tags:
