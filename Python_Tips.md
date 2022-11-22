@@ -423,6 +423,7 @@ I like to run the [PortableApps](https://portableapps.com/) versions of various 
 ```batch
 SET JAVA_HOME="C:\PortableApps\CommonFiles\OpenJDKJRE64"
 ```
+
     (Remember that your path may vary depending on where you installed the OpenJDK JRE in step #4 above.) Save the file and close the text editor. Run `pycharm.bat`, either from Windows Command Prompt or by double-clicking in Windows Explorer to ensure that it launches PyCharm properly. If PyCharm does not launch, ensure that the path to OpenJDK JRE is correct.
 
 6. Open a text editor (again, Windows Notepad is fine) with an empty/blank file and enter the following lines and save the file as `start_pycharm.bat` in `App\PyCharm` sub-folder of PortableApps PyCharm installation folder (i.e., one directory level _above_ where `pycharm.bat` is stored).
@@ -430,6 +431,7 @@ SET JAVA_HOME="C:\PortableApps\CommonFiles\OpenJDKJRE64"
 @ECHO OFF
 CMD.EXE /C "START /MIN /HIGH C:\PortableApps\PyCharmPortable\App\PyCharm\bin\pycharm.bat"
 ```
+
     (Again, the path to `pycharm.bat` may be different for you.) While this step is optional, this batch file gives some flexibility in launching PyCharm by allowing you adjust the priority (in the example above, we use "HIGH") of the application.
 
 7. Create a desktop/Start Menu launcher for PyCharm by setting `start_pycharm.bat` as the target (the application to launch) and choosing `pycharm.ico` in `App\PyCharm\bin` as the icon. The launcher will open a _minimized_ Windows Command Prompt when PyCharm is launched. You must leave it running while PyCharm is running; it will close automatically when PyCharm is closed. (There are ways to hide the Command Prompt; see, for example, [here](https://www.robvanderwoude.com/battech_hideconsole.php) and [here](https://www.winhelponline.com/blog/run-bat-files-invisibly-without-displaying-command-prompt/).)
