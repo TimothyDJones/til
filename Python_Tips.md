@@ -407,5 +407,28 @@ If you want `more_colors` to have a distinct identity (and `colors` to **not** b
 [Reference1](https://stackoverflow.com/questions/2465921/how-to-copy-a-dictionary-and-only-edit-the-copy/2465951#2465951)
 
 
+## Install and configure PortableApps PyCharm CE (Community Edition)
+First, this explanation is entirely non-standard, but it's what works for me and is what I use.  It may or may not work for you. :)
 
+I like to run the [PortableApps](https://portableapps.com/) versions of various applications on Windows, because they keep each application isolated and don't clutter up the Registry or cause conflicts. One of the difficulties with PortableApps is with Java-based applications, including [PyCharm](https://www.jetbrains.com/pycharm/), which is based on the [IntelliJ IDEA](https://www.jetbrains.com/idea/old/). This process explains how to install the PortableApps version of the free, open-source [PyCharm CE (Community Edition)](https://www.jetbrains.com/products/compare/?product=pycharm&product=pycharm-ce) using the PortableApps version of OpenJDK.
+
+1. Download the _latest_ version of PortableApps version of **PyCharm CE (Community Edition)** from mwayne's Sourceforge site: [https://sourceforge.net/projects/mwayne/files/PyCharmPortable/](https://sourceforge.net/projects/mwayne/files/PyCharmPortable/). (All versions reference _Dev_Test_1_, so just choose the latest PyCharm version.) For more details, see the [package source](https://github.com/2wayne/PyCharmPortable).
+2. Install PortableApps version of PyCharm CE as usual. Installation directory is up to you, but simply make a note of where you installed. For this example, we'll assume that it's installed to `C:\PortableApps\PyCharmPortable`.
+3. Download the latest version of the 64-bit OpenJDK JRE from PortableApps open-source Sourceforge site: [https://sourceforge.net/projects/portableapps/files/OpenJDK%20JRE%20Portable/](https://sourceforge.net/projects/portableapps/files/OpenJDK%20JRE%20Portable/). Notes:
+	- **64-bit** JRE is required for PyCharm. These versions are identifed with **64** in the file name after **OpenJDKJRE**.
+	- PyCharm requires minimum Java version of Java **11**. (This is why you _cannot_ use the common PortableApps [jPortable64](https://portableapps.com/apps/utilities/java_portable_64), because it ends at Java 8, due to licensing restrictions. [OpenJDK](https://openjdk.org/) is the open-source equivalent of the standard Java platform.
+	- You _may_ use the [**JDK (Java Development Kit)**](https://sourceforge.net/projects/portableapps/files/OpenJDK%20Portable/) version of PortableApps OpenJDK instead of the **JRE** version, if you prefer. However, PyCharm only requires the JRE portion to run the application.
+4. Install the PortableApps version of OpenJDK JRE as usual. Again, note the directory which you installed it to. The default/standard installation directory will include `CommonFiles` in the path name.
+5. In the PortableApps PyCharm installation folder (in our example, `C:\PortableApps\PyCharmPortable`), navigate to `App\PyCharm\bin` sub-folder and open `pycharm.bat` in a text editor (Windows Notepad works fine). In `pycharm.bat`, add the following line _immediately_ below the `@ECHO OFF` statement at the top of the file:
+```batch
+SET JAVA_HOME="C:\PortableApps\CommonFiles\OpenJDKJRE64"
+```
+(Remember that your path may vary depending on where you installed the OpenJDK JRE in step #4 above.) Save the file and close the text editor. Run `pycharm.bat`, either from Windows Command Prompt or by double-clicking in Windows Explorer to ensure that it launches PyCharm properly. If PyCharm does not launch, ensure that the path to OpenJDK JRE is correct.
+6. Open a text editor (again, Windows Notepad is fine) with an empty/blank file and enter the following lines and save the file as `start_pycharm.bat` in `App\PyCharm` sub-folder of PortableApps PyCharm installation folder (i.e., one directory level _above_ where `pycharm.bat` is stored).
+```batch
+@ECHO OFF
+CMD.EXE /C "START /MIN /HIGH C:\PortableApps\PyCharmPortable\App\PyCharm\bin\pycharm.bat"
+```
+(Again, the path to `pycharm.bat` may be different for you.) While this step is optional, this batch file gives some flexibility in launching PyCharm by allowing you adjust the priority (in the example above, we use "HIGH") of the application.
+7. Create a desktop/Start Menu launcher for PyCharm by setting `start_pycharm.bat` as the target (the application to launch) and choosing `pycharm.ico` in `App\PyCharm\bin` as the icon. The launcher will open a _minimized_ Windows Command Prompt when PyCharm is launched. You must leave it running while PyCharm is running; it will close automatically when PyCharm is closed. (There are ways to hide the Command Prompt; see, for example, [here](https://www.robvanderwoude.com/battech_hideconsole.php) and [here](https://www.winhelponline.com/blog/run-bat-files-invisibly-without-displaying-command-prompt/).)
 
