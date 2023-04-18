@@ -48,3 +48,15 @@ git tag -a vX.Y.Z -m "Annotation for this tag." # Semantic verison tag for versi
 git push --tags                                 # Apply tag to remote.
 git ls-remote --tags                            # Display tags on remote.
 ```
+
+## Stackstorm
+
+### Run ST2 actions, aliases, etc. via API in shell with auto-generated authentication token
+The ST2 [API](https://api.stackstorm.com/) is useful for prototyping and getting more detailed output than is possible when using the standard ST2 command-line tools. However, using the API requires an authentication token (or API key). You can create a simple shell script to auto-generate the token using your logged in ST2 account and set it to the `ST2_AUTH_TOKEN` environment variable.
+```bash
+ST2_AUTH_TOKEN=$(curl -X POST -k -u yourusername:'yourpassword' https://myhost.example.com/auth/v1/tokens | jq -r '."token"')
+```
+Now, to run an API command at the command line using this API token, just include the `ST2_AUTH_TOKEN` environment variable in the headers.
+```bash
+curl -H "X-Auth-Token: $ST2_AUTH_TOKEN" -k https://myhost.example.com/api/v1/actions
+```

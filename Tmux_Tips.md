@@ -105,6 +105,14 @@ Frequently, you'll need to copy and paste text between windows or panes in Tmux.
 
 This workflow works fine for copying and pasting from/to Vim editor instances running inside Tmux windows/panes.
 
+## "Advanced" Copy/Paste in Tmux with `vi` mode
+Many Tmux users (myself included) prefer to use the so-called `vi` (or `vim`) mode in Tmux. (You can learn more about it [here](https://dev.to/iggredible/the-easy-way-to-copy-text-in-tmux-319g).) It allows you to use Vi/Vim style screen-based editing, especially for cut, copy, and paste operations. And it works (reasonably) well with mouse scrolling! To enable it, add the following lines to your `.tmux.conf` file:
+```
+set-option -g mouse on			# Globally enable mouse support
+setw -g mode-keys vi			# Globally enable vi mode
+set-option -s set-clipboard off		# Disable 
+```
+
 ## Install Tmux on Git for Windows
 [Git for Windows](https://gitforwindows.org/) is a special version of the [MSYS2](https://www.msys2.org/) with some customizations for better integration with Windows. In particular, in my experience, MSYS2 with Git does not work properly with [Visual Studio Code](https://code.visualstudio.com/), while Git for Windows works perfectly without any tweaking. However, Git for Windows version of MSYS2 does not include many of the other tools that are available in the standard MSYS2 installation, including Tmux. Nevertheless, we can install Tmux from the MSYS2 repositories with a little bit of effort.
 
