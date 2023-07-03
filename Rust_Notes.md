@@ -143,11 +143,13 @@ Hmmm... The compiler tells us that the error happened on line #8, the line with 
 
 #### The Rust `core` and `std` Crates
 
-This gives us a chance to note that Rust has excellent documentation for the language itself and the built-in libraries, called **crates** in the Rust vernacular. Most of the time, you will use modules from the `[core](https://doc.rust-lang.org/core/)` crate, which is the base underlying language code, including the primitive types (see below), and the [standard (so-called `std`)](https://doc.rust-lang.org/std/) crate, which contains the most common functions needed for day-to-day development, such as string formatting, composite data structures (so-called "generics"), collections, and asynchronous programming features. Keep the link to the `std` library handy, as you'll refer to it often.
+This gives us a chance to note that Rust has excellent documentation for the language itself and the built-in libraries, called **crates** in the Rust vernacular. Most of the time, you will use modules from the [`core`](https://doc.rust-lang.org/core/) crate, which is the base underlying language code, including the primitive types (see below), and the [standard (so-called `std`)](https://doc.rust-lang.org/std/) crate, which contains the most common functions needed for day-to-day development, such as string formatting, composite data structures (so-called "generics"), collections, and asynchronous programming features. Keep the link to the `std` library handy, as you'll refer to it often.
 
 #### Namespaces in Rust
 
-You probably noticed the double colon (`::`) separator between `std` and `fmt` when referencing the formatting (so-called `fmt`) library. What does it represent? Many programming languages, including Rust, use the concept of **[namespaces](https://en.m.wikipedia.org/wiki/Namespace)**. Without getting into all of the technical details of namespaces, the main thing to understand is that they define a context in which the names of things, such as modules like `fmt` and its children are unique. This allows us reference these items in such a way that we know which specific `fmt` module we are talking about in the case that another (different) crate or library also uses contains a module named `fmt`. To ensure that we use the one from the `std` library, we can always use the "long" name: `std::fmt`. 
+You probably noticed the double colon (`::`) separator between `std` and `fmt` when referencing the formatting (so-called `fmt`) library. What does it represent? Many programming languages, including Rust, use the concept of **[namespaces](https://en.m.wikipedia.org/wiki/Namespace)**. Without getting into all of the technical details of namespaces, the main thing to understand is that they define a context in which the names of things, such as modules like `fmt` and its children are unique. This allows us reference these items in such a way that we know which _specific_ `fmt` module we are talking about in the case that another (different) crate or library also uses contains a module named `fmt`. To ensure that we use the one from the `std` library, we can always use the "long" name: `std::fmt`. 
+
+Think about an office or classroom that has more than one Sally. We need to use the last name (surname) of each to ensure that we know which particular one we are addressing, when speaking to them. Namespaces work precisely the same way in programming, except that we usually put the "surname" on the front (sort of like in most Asian cultures).
 
 The double colon (`::`) is called the _namespace delimiter_. Each use of the `::` defines another level of the hierarchy of element within the namespace. Thus, we can uniquely identify the basic formatter macro with the full name of `std::fmt::format!()` (or just `std::fmt::format!`). Most of the time, it is **not** necessary for us to use the "full name", because from our program, it is obvious (clear) that we are only using a single namespace. Moreover, the `std` and `core` namespaces are always implicitly available.
 
@@ -255,11 +257,100 @@ The re-defintion of `sentence` (line #10) includes a "newline" (`\n`) character 
 | °              | degree     | U+000B0            |
 | •              | bullet     | U+02022            |
 
+### Comments in Rust
+All good programmers know that _judicious_ use of comments in code is a best practice and an important part of writing good code. I have a whole philosophy around commenting, but the overarching principle is: when in doubt, put in a comment. To me, it's better to have a note about _why_ you did something than not. (The basic idea for comments is to explain **WHY** and **NOT** what! Your code should stand on it's own with respect what; if it doesn't, then you need to simplify it!)
+
+Rust supports three basic comment types, all of which are derived from comment formats of C++.
+1) Line comments: These comments begin with two slashes: `//`. They can encompass the entire line or be placed after code as a brief note. Either way, everything _on that line_ after the double-slash is ignored by the compiler and essentially treated as whitespace.
+```rust
+    // Initialize variables
+    let top: i8 = 0
+    let bottom: i8 = 40
+    let mut current: i8 = 0   // Pointer to current line.
+```
+2) Block comments: These comments can extend over _multiple_ lines (unlike line comments) and begin with `/*` and end with the _next_ `*/`. Block comments can encompass only part of a line and can include code both _before_ and _after_ the comment, if desired.
+```rust
+fn count_balls(blue: u16, red: u16) -> u32 {
+	/* Note: `blue` and `red` are u16, so we 
+	   must cast to u32 for calculation! */
+	
+	return (red as u32) + (blue as u32)
+}
+```
+3) Document (or "Doc") comments: These comments are used by external documentation tools to automatically generate documentation for your code. This is especially useful when you get to the point of developing your _own_ crates. For others to use crates effectively, good documentation is an absolute necessity. Doc comments start with _three_ slashes (`///`) and are otherwise just like line comments, except that they will typically be multiple lines to explain behavior, arguments, etc.
+```rust
+/// A function to count the number of balls
+/// currently in play by both the blue and
+/// red teams.
+/// :param: blue -> u16
+/// :param: red -> u16
+/// :returns: u32
+fn count_balls(blue: u16, red: u16) -> u32 {
+	return (red as u32) + (blue as u32)
+}
+```
+
+## Primitive Types in Rust
+Now that we know a little about how variables work in Rust, we can start to consider what kinds of variables we can use. In programming, the standard terminology for these kinds of entities is **types**. Rust is:
+(a) [**strongly typed**](https://www.techtarget.com/whatis/definition/strongly-typed): With strong typing, variables of _different_ types, such as integers and decimal numbers, cannot be _implicitly_ combined; the programmer must _explicitly_ **cast** the value from one type to the other. This is one of the well-known and key strengths of Rust, as it ensures no variables can be unwittingly overwritten or used incorrectly. 
+(b) [statically typed]: Static (versus dynamic typing, which is used by languages like Python) is related to strong typing, but subtly different. Static typing means that the _types_ of all variables are defined (and known) at the time the program is compiled. This allows the compiler to ensure that all operations with these variables are appropriate (_syntactically_ correct) for each. Likewise, the compiler can validate that the types for all parameters passed as arguments to functions are the correct type.
+
+Rust provides a rich, yet standard set of **primitive** (very basic) data types, including:
+- Numbers
+  - Integers
+    - Signed (positive and negative values)
+    - Unsigned (positive only values)
+  - Decimal numbers called floating-point numbers
+- Text
+  - Strings (ordered sequences of text or other symbolic characters)
+  - Characters
+
+
+
 ### Integers
+Integers are just the same integers that you learned about in algebra class: the positive and negative whole numbers along with zero (0). Rust provides for two different classes of these: one that is signed, meaning that it includes both positive and negative values and the other that is _unsigned_ which has only positive values and 0. 
+
+You might wonder why we need both. The benefit is that we can have a much larger "maximum" value with the _unsigned_ values for each of the different number of bits of precision. The bits of precision define the number of bits of memory that Rust must use to store the value and, accordingly, the maximum (and, in the case of the _signed_ integers, the minimum) values allowed.
+
+#### Underscore (`_`) as Separator for Integers
+One handy feature of integers in Rust is the ability to use the underscore (`_`) as a separator to make integer constant values easier to read. Rust makes no restriction on the number of consecutive underscores or where you can place them (except they cannot be the beginning or ending character), but the standard is to use them as separator for each three orders of magnitude. For example, all of the following are equivalent as far as Rust is concerned: 1234567890, 1_234_567_890, 1__234___567____890, and 12345______________67890.
 
 #### Signed Integers
+Rust has _six_ types of signed integers (as of the latest versions). Each of them are identified with the type prefix of `i`: `i8`, `i16`, `i32`, `i64`, `i128` and `isize`. If we create an integer variable (again, using `let`) without specifying the type explicitly the default type is is `i32`. The minimum and maximum values for each type are -2^(n-1) and 2^(n-1) - 1, respectively, where n is the number of bits in the type name (e.g., 8, 16, 32, 64, or 128).
+| Type | Minimum Value | Maximum Value | Comments                 |
+|:----:|--------------:|--------------:|:-------------------------|
+| i8   | -128          | 127           |                          |
+| i16  | -32768        | 32767         |                          |
+| i32  | -2147483648   | 2147483647    | This is the size of `isize` for **32-bit** architecture machines. |
+| i64  | -9223372036854775808   | 9223372036854775807    | This is the size of `isize` for **64-bit** architecture machines. |
+| i128 | -170141183460469231731687303715884105728 | 170141183460469231731687303715884105727 | |
 
 #### Unsigned Integers
+Unsigned integers are very similar to the signed, but they use the type prefix of `u` and we have the same _six_ "subtypes". One of the main uses of _unsigned_ integers is in counting (or indexing) items or elements of lists or collections. Thus, the minimum value for each of these is 0 and the maximum value is 2^n - 1, where, again, n is the number of bits in the type name. (The maximum value is just one more than _twice_ the maximum of the corresponding _signed_ integer.)
+| Type | Minimum Value | Maximum Value | Comments                 |
+|:----:|--------------:|--------------:|:-------------------------|
+| u8   | 0             | 255           |                          |
+| u16  | 0             | 65535         |                          |
+| u32  | 0             | 4294967295    | This is the size of `usize` for **32-bit** architecture machines. |
+| u64  | 0             | 18446744073709551615   | This is the size of `usize` for **64-bit** architecture machines. |
+| u128 | 0             | 340282366920938463463374607431768211456 | |
+
+You may be wondering what happens if we need integers larger than i128/u128. The Rust community has us covered with several open-source crates for such needs. Just head over to the official Rust package archive, [crates.io](https://crates.io/), to look for what you might need.
+
+To create variables with an _explicit_ type, we simply put a colon (`:`) after the variable name followed by the type designation and then the assignment operator (the equals sign). For example, we can make the following variable assignments:
+```rust
+  let my_i8: i8 = 25;
+  let my_other_i8: i8 = -17;
+  let my_u16: u16 = 12345;
+  let mut my_mut_u32 = 8675309;		// No type designation!
+```
+
+Note that in the last declaration, we did not specify a type, so it will default to `u32` and `u32` is, in fact, large enough to hold this value. If we tried to 
+
+
+
+#### Math with Different Integer Types
+As we mentioned when discussing _strong typing_, Rust does not allow us implicitly mix types when combining variables, such as doing math operations with integers. Thus, we can't just add an i8 to i16 (or even an u8!). So how do we work with them, since certainly there will be times when we have incompatible types? Rust provides a clean way to do this called **type casting**. (No, this isn't the same as [Michael Shannon](https://en.m.wikipedia.org/wiki/Michael_Shannon) usually playing bad guys!) Type casting allows us to convert one type to another to make it compatible with another.
 
 
 ### Floating Point Numbers
