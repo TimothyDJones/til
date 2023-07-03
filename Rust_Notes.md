@@ -181,6 +181,79 @@ Violá! We have completed our first program! That probably seemed like quite a b
 ### Configure VS Code for Rust Development
 
 ## Rust Variables
+If you are new to programming, the concept of a **variable** may be confusing to you at first. The best way to think about variables in programming is to think of like variables in an algebraic equation from math (even if you didn't enjoy math!). Just like `x` in the equation `2x - 3 = 5` simply represents a value (in this case `x = 4`), a variable in a program is just a placeholder for a value.
+
+### Mutable and Immutable Variables
+
+If you have some programming experience, Rust treats variables a bit differently than in many languages. In most other programming languages, variables can be changed (called **mutable**) by default after they have set to an initial value (so-called **initialized**). However, in Rust, unless you _explicitly_ declare that a variable _can_ be changed, it is **immutable** (or a **constant**).
+
+In our earlier example program, all of our variables (`my_name`, `my_age`, `my_home`, and even `sentence`) were defined as _immutable_ using the `let` directive. Try to change to change the `my_age` variable after you have created/initialized it (make yourself younger!) and click **Run**. What does the Rust compiler do? While you may get other errors, as well, you will certainly get the following error (or similar).
+```rust
+error[E0384]: cannot assign twice to immutable variable `my_age`
+ --> src/main.rs:4:5
+  |
+3 |     let my_age = 57;
+  |         ------
+  |         |
+  |         first assignment to `my_age`
+  |         help: consider making this binding mutable: `mut my_age`
+4 |     my_age = 37;
+  |     ^^^^^^^^^^^ cannot assign twice to immutable variable
+```
+
+As you begin your journey to learn Rust, you will likely become quite familiar with [`E0384` error code](https://doc.rust-lang.org/error_codes/E0384.html). Basically, the compiler tells us that the default for the variable is that it is _immutable_ and, therefore, cannot be changed.
+
+But variables are are _meant_ to be changed! That's what programs do. You're absolutely right. To ensure safety, Rust wants us to be intentional about making our variables _mutable_, so it requires the keyword `mut` following `let` to do this.
+
+Let's update our earlier program so that we can _change_ our home (since we really can't make ourselves younger!) to a place that we'd _like_ to live. Note that we must make **both** `my_home` _and_ `sentence` mutable in this case.
+
+```rust
+fn main() {
+    let my_name = "Tim";
+    let my_age = 57;
+    let mut my_home = "Tulsa, OK";
+    let sentence_termination = '!';
+    let mut sentence = format!("Hi, I'm {} from {} and I'm {} years old",
+		my_name, my_home, my_age);
+	println!("{}{}", sentence, sentence_termination);
+	my_home = "an Alpine village";
+	sentence = format!("Hi, I'm {0} and I'm {2} years old.\nI'd like to live in {1}",
+	    my_name, my_home, my_age);
+	println!("{}{}", sentence, sentence_termination)
+}
+```
+
+When you run this in the **Rust Playground**, what does the output look like? Is it what you expected? It should look something like this:
+```rust
+   Compiling playground v0.0.1 (/playground)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.65s
+     Running `target/debug/playground`
+
+Hi, I'm Tim from Tulsa, OK and I'm 57 years old!
+Hi, I'm Tim and I'm 57 years old.
+I'd like to live in an Alpine village!
+```
+
+Just a few brief comments about some of the other items that you may have noticed in our new code.
+
+In line #10, instead of the _empty_ curly braces (`{}`), we now have numbers in the braces. These numbers correspond to the _position_ of our parameters: `my_name`, `my_home`, and `my_age`. This allows us to change order that the parameters are displayed/output in `sentence` _without_ having to change the order of the parameters themselves in the `format!()` macro, helping us maintain consistency between the two definitions of `sentence` variable. 
+
+In addition, note that the position IDs start with 0 (instead of 1). As with most programming languages, all **indexes** in Rust are _zero-based_. This may seem unnatural to new programmers, but as you gain experience, you will start to see the benefit when it comes to iterating over a list (collection) of items.
+
+The second (last) `println!()` statement (line #12) is not terminated with a semi-colon (`;`). I noted earlier that each (and every!) independent status **must** end with a semi-colon. While this is the preferred practice, the final statement in a block (or function) does not require the semi-colon. Later, when we look at functions that return a value, we'll see why it's common to leave off the semi-colon on the last statement in Rust functions. For now, simply know that this is a common practice in the Rust community, so don't be surprised by it, if you see it when reading others' code!
+
+The re-defintion of `sentence` (line #10) includes a "newline" (`\n`) character embedded in the text so that the two sentences are displayed on separate lines in the output. Just as you can put any _printable_ character, including any of the thousands of [Unicode characters](https://en.wikipedia.org/wiki/List_of_Unicode_characters), such as emojis 😃, control characters can be included as well. Here are some common control characters and entities.
+| Representation | Definition | Unicode code point |
+|:--------------:|:----------:|:------------------:|
+| \t             | TAB        |                    |
+| \n             | LF         |                    |
+| \r             | CR         |                    |
+| –              | en dash    | U+02013            |
+| –              | em dash    | U+02014            |
+| ×              | multiplication | U+000D7        |
+| ÷              | division   | U+000F7            |
+| °              | degree     | U+000B0            |
+| •              | bullet     | U+02022            |
 
 ### Integers
 
