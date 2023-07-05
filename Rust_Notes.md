@@ -308,7 +308,7 @@ Rust provides a rich, yet standard set of **primitive** (very basic) data types,
 
 
 ### Integers
-Integers are just the same integers that you learned about in algebra class: the positive and negative whole numbers along with zero (0). Rust provides for two different classes of these: one that is signed, meaning that it includes both positive and negative values and the other that is _unsigned_ which has only positive values and 0. 
+Integers are just the same integers that you learned about in algebra class: the positive and negative whole numbers along with zero (0). Rust provides for two different classes of these: one that is _signed_, meaning that it includes both positive and negative values and the other that is _unsigned_ which has only positive values and 0. 
 
 You might wonder why we need both. The benefit is that we can have a much larger "maximum" value with the _unsigned_ values for each of the different number of bits of precision. The bits of precision define the number of bits of memory that Rust must use to store the value and, accordingly, the maximum (and, in the case of the _signed_ integers, the minimum) values allowed.
 
@@ -350,11 +350,57 @@ Note that in the last declaration, we did not specify a type, so it will default
 
 
 #### Math with Different Integer Types
+Rust supports the four common arithmetic operations plus the [modulus](https://en.m.wikipedia.org/wiki/Modulo) (or remainder) operation using integers.
+- Addition: Using the `+` operator.
+- Subtraction: Using the `-` operator.
+- Multiplication: Using the `*` operator.
+- Division: Using the `/` operator. Note that any remainder as a result of the division in lost (truncated).
+- Modulus: Using the `%` operator. Returns the remainder of the division of the first number by the second number. (Modulus only makes sense for 
+
 As we mentioned when discussing _strong typing_, Rust does not allow us implicitly mix types when combining variables, such as doing math operations with integers. Thus, we can't just add an i8 to i16 (or even an u8!). So how do we work with them, since certainly there will be times when we have incompatible types? Rust provides a clean way to do this called **type casting**. (No, this isn't the same as [Michael Shannon](https://en.m.wikipedia.org/wiki/Michael_Shannon) usually playing bad guys!) Type casting allows us to convert one type to another to make it compatible with another.
+
+To use type casting we simply reference our variable name with a particular type followed by `as other_type` where other_type is the compatible type that we want convert the value to. For example, if we have `let balls: i16 = 12` and we want to use it as a `u32`, we would say `balls as u32`. We showed a simple example of this above when discussing comments, as well, where the variables were `u16` type and we cast them to `u32`. Often, we will "wrap" the type casts in parentheses for clarity, but this is not required; it simply indicates that the type cast should be done _before_ the other operations.
+
+Now, let's look at some math operations as examples. We use comments to annotate what's happening for brevity (and because it helps us practice using them!).
+```rust
+fn main() {
+    /* Some integer math examples. */
+    let a: i16 = 12;
+    let b: i16 = -3;
+    let c = 23; 				// c is `u32`, the default integer type!
+    let d: i32 = -17;			// d is _explicitly_ declared as `i32`.
+    
+    // addition
+    let sum1 = a + b;			// 9 as `i16`, since both are `i16`.
+    let sum2 = b + (c as i16);	// 20 as `i16`
+
+	// subtraction
+	let diff1 = c - (a as i32);	// 11 as `i32`
+	let diff2 = a - 5;			// 7 as `i16`; Rust will automatically make a literal the same type.
+	
+	// multiplication
+	let prod1 = a * b;			// -36 as `i16`
+	let prod2 = (b as i32) * d;	// 51 as `i32`
+	let prod3 = ((a * b) as i32) * c;		// -828 as `i32`; we can cast an intermediate *result* too.
+	
+	// division
+	let quot1 = a / b;			// -4 as `i16`
+	let quot2 = c / d;			// -1 as `i32`; remainder truncated!
+	
+	// modulus
+	let mod1 = (c as i16) % a;	// 11 as `i16`
+}
+```
+
+If you run the above code in the **Rust Playground** (or Rust compiler), you will get several _warnings_ about unused variables. This is because we define the various results, such as, `sum1`, `diff2`, etc., but never do anything with them, like print them. If you find this annoying or disconcerting, you may supress these warnings by adding the `#[allow(unused)]` directive at the top of your code. However, this can be dangerous _general_ practice, because it may result in you unintentionally leaving a variable unused!
+
+In the comments above, we made claims the _types_ of the result variables. But how can we check to ensure that these claims are correct? Rust has a couple of ways to do this. The most common (and obvious!) way is to use the `type_of()` function.
+
+
 
 
 ### Floating Point Numbers
-Numbers with a decimal point that include a fractional part. Name comes from the computer science term [floating-point arithmetic](https://en.m.wikipedia.org/wiki/Floating-point_arithmetic), which is how computers represent these numbers accurately when all of the internal calculations are done with binary (base 2) numbers.
+For numbers with a decimal point that include a fractional part, Rust has so-called **floating-point numbers**. The name comes from the computer science term [floating-point arithmetic](https://en.m.wikipedia.org/wiki/Floating-point_arithmetic), which is how computers represent these numbers accurately when all of the internal calculations are done with binary (base 2) numbers. At this point, we don't need to concern ourselves with all of the details, but just that Rust has two types of floating-point values, per the IEEE-754 standard, with the `f` type prefix: `f32` and `f64`. The current versions of Rust default to `f64`, since on modern (64-bit) processors performance is about the same as for `f32`.
 
 ### Strings
 Strings represent textual elements of more than one character in Rust. For historical reasons, programmers call a sequence of text (or other symbolic) characters with a particular order ["strings"](https://en.wikipedia.org/wiki/String_(computer_science)). (This naming _probably_ comes typesetting in which characters were "strung" together into words and lines for page layout.)
