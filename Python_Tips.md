@@ -436,3 +436,30 @@ CMD.EXE /C "START /MIN /HIGH C:\PortableApps\PyCharmPortable\App\PyCharm\bin\pyc
 
 7. Create a desktop/Start Menu launcher for PyCharm by setting `start_pycharm.bat` as the target (the application to launch) and choosing `pycharm.ico` in `App\PyCharm\bin` as the icon. The launcher will open a _minimized_ Windows Command Prompt when PyCharm is launched. You must leave it running while PyCharm is running; it will close automatically when PyCharm is closed. (There are ways to hide the Command Prompt; see, for example, [here](https://www.robvanderwoude.com/battech_hideconsole.php) and [here](https://www.winhelponline.com/blog/run-bat-files-invisibly-without-displaying-command-prompt/).)
 
+##  "Flatten" list/array in Python
+A common task in Python is to "flatten" (or reduce the dimension) of a list/array, so that elements of nested lists/arrays are made members of the top-level list/array. For example, if you consider a "list of lists" (two-dimensional array or perhaps a matrix), you often want to "flatten" it to a single list with the elements of the nested lists as the elements. A common scenario is when extracting items (or keys) from a list/array of _dictionaries_.
+
+Consider this list of lists:
+```python
+list_of_lists = [[1, 2, 3],
+                 [4, 5, 6],
+                 [7, 8, 9]]
+```
+Essentially, `list_of_lists` is a list of _three_ nested lists, let's call them **sublists**, with three elements each (or you could think of it as a 3x3 matrix). We can think of each of the sublists as "rows". To "flatten" the list, we can use a (relatively) simple Python [list comprehension](https://docs.python.org/3/tutorial/datastructures.html#list-comprehensions) to do this:
+```python
+flat_list = [item for sublist in list_of_lists for item in sublist]
+print(flat_list)	# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+At first glance, this list comprehension may seem a bit strange, but if you think about what it is doing in terms of Python `for` loops, it makes very good sense:
+```python
+flat_list = list()
+for sub_list in list_of_lists:
+	for item in sub_list:
+		flat_list.append(item)
+print(flat_list)	# [1, 2, 3, 4, 5, 6, 7, 8, 9]
+```
+From this, we can see that the list comprehension above is simply a **double** list comprehension where we are _first_ iterating over the sublists and then passing those into the _second_ iteration to handle the individual elements of sublists! Once you've used this syntax a few times, it'll become second nature.
+
+[Reference1](https://datagy.io/python-flatten-list-of-lists/)  
+[Reference2](https://realpython.com/python-flatten-list/)
+[Reference3](https://stackabuse.com/python-how-to-flatten-list-of-lists/)
