@@ -16,6 +16,11 @@
 - [Flask-WTF](https://github.com/wtforms/flask-wtf/) - Simple integration of Flask and [WTForms](https://github.com/wtforms/wtforms/), including CSRF and more.
 - [Flask-SQLAlchemy](https://github.com/pallets-eco/flask-sqlalchemy/) - [SQLAlchemy](https://www.sqlalchemy.org/) support for Flask.
 
+### Flask-SQLAlchemy
+To install Flask-SQLAlchemy, the [greenlet] library must be installed. This library must be compiled from source and it requires the **C++** compiler on the host system:
+- CentOS/Rocky Linux:  `gcc-c++`
+- Ubuntu/Debian Linux:  `g++`
+
 
 
 ## Nginx Configuration
