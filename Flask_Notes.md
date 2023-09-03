@@ -75,6 +75,7 @@ Or, you may specify parameters via command-line switches:
 ```bash
 flask --app app run --debug --port 5000
 ```
+
 [Reference](https://flask.palletsprojects.com/en/2.3.x/config/)
 
 ### Running the Application Directly
@@ -90,7 +91,22 @@ python app.py
 ```
 Of course, we can still use `flask run`, if desired. So now we have multiple options for how to launch our application.
 
+### Saving Environment Configuration in `.flaskenv`
+Instead of having to export the environment settings at the shell or hard-coding values in your script, you can alternately save these settings in a configuration file named `.flaskenv` in the root directory of your project. To use this approach, you need to install the `python-dotenv` package.
+```bash
+(venv) $ python -m pip install python-dotenv
+```
+Now, you can create your `.flaskenv` file. Here's an example with various settings.
+```bash
+FLASK_APP=myapp.py
+FLASK_DEBUG=1
+FLASK_RUN_HOST=0.0.0.0
+FLASK_RUN_PORT=5050
+FLASK_CONFIG=development
+```
+All of these variables will be available to your Flask application environment as if they had been explicitly exported when you execute `flask run`.
 
+[Reference](https://prettyprinted.com/tutorials/automatically_load_environment_variables_in_flask/)
 
 ## Routes
 
