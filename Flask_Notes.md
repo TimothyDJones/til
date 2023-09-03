@@ -207,3 +207,32 @@ flask_ecommerce
 ```
 
 [Reference](https://realpython.com/flask-blueprint/)
+
+## Flask Database Migrations
+The [Flask-Migrate](https://flask-migrate.readthedocs.io/) extension provides database migration support to SQLAlchemy via [Alembic](https://alembic.sqlalchemy.org/). The basic pattern for running migrations on Flask project is:
+- Install **Flask-Migrate** extension in virtual environment.
+```bash
+(venv) $ python -m pip install flask-migrate
+```
+- Add **Flask-Migrate** extension as a dependency to your application. Typically, this will be main Python file for small application projects or your `app/__init__.py` for a multi-file projects.
+```python
+from flask_migrate import Migration
+
+...
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+```
+- Initialize the database migrations. This is only required once for each project. It will create the `migrations` directory at the root of your project, along with the `alembic.ini` configuration file inside of it. The actual migration scripts themselves are contained in the `migrations/versions` directory. The entire `migrations` directory should be included your in source control archive.
+```bash
+(venv) $ flask db init
+```
+- Make any necessary changes to your database schema. This is done by editing/changing your Flask **model** classes and includes the initial creation of the classes.
+- Create the necessary migration scripts.
+```bash
+(venv) $ flask db migrate
+```
+- Apply the database migrations to your database. Remember that the database migrations must be applied to the database in each environment, which may be different for development, test, and production.
+```bash
+(venv) $ flask db upgrade
+```
+You may also run `flask db downgrade` to _remove_ schema changes instead.
