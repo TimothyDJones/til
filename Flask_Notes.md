@@ -152,6 +152,8 @@ def detail(num):
 
 - Flask automatically loads templates from files in the `\templates` directory under the directory containing the Flask application file (typically, `app.py`).
 - Template files are conventionally named with `.html` extension and contain HTML and [Jinja](https://jinja.palletsprojects.com/) markup.
+	- `{%  %}` - Contain Jinja logical constructs, such as conditionals and looping structures.
+	- `{{  }}` - Contain Jinja template output, typically variables passed in from views, but also functions like `url_for`, macros, etc.
 - Static files, such as images, JavaScript and CSS files should be stored in a directory named `static` also at the same level as the Flask application file with, optionally, sub-directories named, `img`, `js` and `css`, respectively.
 - Templates and static files should be referenced in HTML/Jinja templates using the `url_for` directive:
 ```html
