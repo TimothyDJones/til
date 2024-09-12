@@ -470,7 +470,7 @@ Sometimes in an exception handler (`try-except` block), you simply want log the 
 ```python
 try:
   something_that_might_throw_exception()
-exception Exception:
+except Exception:
   pass
 ```
 
