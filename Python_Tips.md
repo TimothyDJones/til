@@ -463,3 +463,33 @@ From this, we can see that the list comprehension above is simply a **double** l
 [Reference1](https://datagy.io/python-flatten-list-of-lists/)  
 [Reference2](https://realpython.com/python-flatten-list/)
 [Reference3](https://stackabuse.com/python-how-to-flatten-list-of-lists/)
+
+## Avoid `pass` in exception handlers with context handler
+Sometimes in an exception handler (`try-except` block), you simply want log the exception and continue without any specific handling, such as raising your own exception with more details. The typical pattern/construct for this is:
+
+```python
+try:
+  something_that_might_throw_exception()
+exception Exception:
+  pass
+```
+
+However, from this code it's not clear that you _intend_ to "eat" the exception. To make it explicit that you want to ignore the exception, you can use the [`suppress` method from `contextlib` standard library](https://docs.python.org/3/library/contextlib.html#contextlib.suppress).
+
+```python
+from contextlib import suppress
+
+with suppress(Exception):
+  something_that_might_throw_exception()
+```
+
+You simply replace `Exception` with the [specific type of exception](https://docs.python.org/3/library/exceptions.html), if you want more granularity in the handling. For example:
+
+```python
+from contextlib import suppress
+
+with suppress(FileNotFoundError):
+  os.remove("maybe_file.txt")
+```
+
+[Reference1](https://dev.to/bowmanjd/suppressing-exceptions-in-python-with-contextlib-suppress-not-try-except-pass-141c)
