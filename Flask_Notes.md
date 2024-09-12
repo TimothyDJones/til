@@ -75,6 +75,7 @@ Or, you may specify parameters via command-line switches:
 ```bash
 flask --app app run --debug --port 5000
 ```
+
 [Reference](https://flask.palletsprojects.com/en/2.3.x/config/)
 
 ### Running the Application Directly
@@ -90,7 +91,22 @@ python app.py
 ```
 Of course, we can still use `flask run`, if desired. So now we have multiple options for how to launch our application.
 
+### Saving Environment Configuration in `.flaskenv`
+Instead of having to export the environment settings at the shell or hard-coding values in your script, you can alternately save these settings in a configuration file named `.flaskenv` in the root directory of your project. To use this approach, you need to install the `python-dotenv` package.
+```bash
+(venv) $ python -m pip install python-dotenv
+```
+Now, you can create your `.flaskenv` file. Here's an example with various settings.
+```bash
+FLASK_APP=myapp.py
+FLASK_DEBUG=1
+FLASK_RUN_HOST=0.0.0.0
+FLASK_RUN_PORT=5050
+FLASK_CONFIG=development
+```
+All of these variables will be available to your Flask application environment as if they had been explicitly exported when you execute `flask run`.
 
+[Reference](https://prettyprinted.com/tutorials/automatically_load_environment_variables_in_flask/)
 
 ## Routes
 
@@ -136,6 +152,8 @@ def detail(num):
 
 - Flask automatically loads templates from files in the `\templates` directory under the directory containing the Flask application file (typically, `app.py`).
 - Template files are conventionally named with `.html` extension and contain HTML and [Jinja](https://jinja.palletsprojects.com/) markup.
+	- `{%  %}` - Contain Jinja logical constructs, such as conditionals and looping structures.
+	- `{{  }}` - Contain Jinja template output, typically variables passed in from views, but also functions like `url_for`, macros, etc.
 - Static files, such as images, JavaScript and CSS files should be stored in a directory named `static` also at the same level as the Flask application file with, optionally, sub-directories named, `img`, `js` and `css`, respectively.
 - Templates and static files should be referenced in HTML/Jinja templates using the `url_for` directive:
 ```html
@@ -207,3 +225,32 @@ flask_ecommerce
 ```
 
 [Reference](https://realpython.com/flask-blueprint/)
+
+## Flask Database Migrations
+The [Flask-Migrate](https://flask-migrate.readthedocs.io/) extension provides database migration support to SQLAlchemy via [Alembic](https://alembic.sqlalchemy.org/). The basic pattern for running migrations on Flask project is:
+- Install **Flask-Migrate** extension in virtual environment.
+```bash
+(venv) $ python -m pip install flask-migrate
+```
+- Add **Flask-Migrate** extension as a dependency to your application. Typically, this will be main Python file for small application projects or your `app/__init__.py` for a multi-file projects.
+```python
+from flask_migrate import Migration
+
+...
+db = SQLAlchemy(app)
+migrate = Migrate(app, db)
+```
+- Initialize the database migrations. This is only required once for each project. It will create the `migrations` directory at the root of your project, along with the `alembic.ini` configuration file inside of it. The actual migration scripts themselves are contained in the `migrations/versions` directory. The entire `migrations` directory should be included your in source control archive.
+```bash
+(venv) $ flask db init
+```
+- Make any necessary changes to your database schema. This is done by editing/changing your Flask **model** classes and includes the initial creation of the classes.
+- Create the necessary migration scripts.
+```bash
+(venv) $ flask db migrate
+```
+- Apply the database migrations to your database. Remember that the database migrations must be applied to the database in each environment, which may be different for development, test, and production.
+```bash
+(venv) $ flask db upgrade
+```
+You may also run `flask db downgrade` to _remove_ schema changes instead.

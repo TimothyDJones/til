@@ -49,6 +49,14 @@ git push --tags                                 # Apply tag to remote.
 git ls-remote --tags                            # Display tags on remote.
 ```
 
+### Show commits for last _X_ hours
+The Git [`log`](https://git-scm.com/docs/git-log) command is one of the hidden gems of Git. To see all of the commits in the last _X_ hours with the **earliest** first, run:
+```
+git log  --since="72 hours ago" --until="now" --reverse --pretty=format:"%h" | head -1
+```
+
+[Reference](https://jmduke.com/posts/microblog/git-oneliner/)
+
 ## Stackstorm
 
 ### Run ST2 actions, aliases, etc. via API in shell with auto-generated authentication token
