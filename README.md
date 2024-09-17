@@ -68,3 +68,14 @@ Now, to run an API command at the command line using this API token, just includ
 ```bash
 curl -H "X-Auth-Token: $ST2_AUTH_TOKEN" -k https://myhost.example.com/api/v1/actions
 ```
+
+### Read (and, optionally, decrypt) values from ST2 keystore in Jinja
+To read (and, optionally, decrypt) values from the keystore using Jinja (versus YAQL) syntax in ST2, you can use a variety of possible syntax options:
+```jinja
+{{ st2kv(PASSWORD_KEYS.keyname, decrypt=true) }}
+
+api_user: "{{ st2kv.system.CUST___phillips66 |from_json_string |jsonpath_query('FORTIMANAGER.apiuser')|first }}"
+api_pass: "{{ st2kv.system.phillips66___fmg_apipass| decrypt }}"
+```
+
+[Reference1](https://docs.stackstorm.com/orquesta/jinja.html#stackstorm-filters)
