@@ -57,6 +57,13 @@ git log  --since="72 hours ago" --until="now" --reverse --pretty=format:"%h" | h
 
 [Reference](https://jmduke.com/posts/microblog/git-oneliner/)
 
+### Show files changed between _current_ branch and another branch
+To show which files have changed between the _current_ branch and another branch, we can use the Git [`...`  operator (the triple-dot operator)](https://git-scm.com/book/be/v2/Git-Tools-Revision-Selection). By using the `--name-status` flag/option with the operator, only the name and status of the differences are displayed.
+```bash
+git diff --name-status HEAD...other_branch
+```
+In this example, `HEAD` means use the current version of the _current_ branch and `other_branch` is the branch that wish to compare it to. You can also specify commit SHAs (explicit or relative, such as `HEAD~2`) for the parameters with the `...` operator.
+
 ## Stackstorm
 
 ### Run ST2 actions, aliases, etc. via API in shell with auto-generated authentication token
