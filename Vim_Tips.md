@@ -9,10 +9,12 @@ Tips for using [Vim](https://code.visualstudio.com/) editor.
 | <kbd>gg</kbd> | **gg** | Go to start of file/buffer |
 | 
 
-## Basic Editing Movements
+## Basic Editing Movements (in Normal mode)
 | Keystrokes | Command | Action |
 | :--------- | :------ | :----- |
 | <kbd>x</kbd> | **x** | **d**elete character under cursor |
+| <kbd>dw</kbd> | **dw** | **d**elete **w**ord under cursor |
+| <kbd>di</kbd>delimiter | **di** | **d**elete **i**nside of pair of delimiters, such as ", ', HTML tags, etc. |
 | <kbd>i</kbd>/<kbd>a</kbd> | **i** / **a** | **i**nsert _at_ or **a**ppend _after_ cursor |
 | <kbd>yy</kbd> | **yy** | duplicate current line (**yank yank**) |
 | <kbd>y</kbd> | **y** | copy (**yank**) selection to clipboard |

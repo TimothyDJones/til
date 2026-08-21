@@ -493,3 +493,9 @@ with suppress(FileNotFoundError):
 ```
 
 [Reference1](https://dev.to/bowmanjd/suppressing-exceptions-in-python-with-contextlib-suppress-not-try-except-pass-141c)
+
+## Clean compiled files cache
+When running Python in your project directory, such as to run tests, Python will create a `__pycache__` directory in each directory where scripts are executed, along with compiled files, such as those with `.pyo` and `.pyc` extension. These are transient files and will automatically get re-generated upon the next execution. To remove them, in the project root directory, run:
+```bash
+find . | grep -E "(/__pycache__$|\.pyc$|\.pyo$)" | xargs rm -rf
+```
